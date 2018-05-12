@@ -1,5 +1,6 @@
 package mypckg;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -210,6 +211,10 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+    InputStream ip2;
+    public void setProfPic(InputStream ip2) {
+        this.ip2 = ip2;
+    }
 
     Connection connection;
     ResultSet rs;
@@ -217,7 +222,7 @@ public class User {
     
     public String addNMUser() throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();    
-    String sql = "INSERT INTO customer(Password,Fname,Lname,Contact_No,Address,NIC,Email,Account_Created,Last_Login) VALUES('" +password+ "','"+firstname+"','"+lastname+"','"+tele+"','"+addr+"','"+NIC+"','"+email+"','"+regDate+"','"+lastLogin+"');";
+    String sql = "INSERT INTO customer(Password,Fname,Lname,Contact_No,Address,NIC,Email,Account_Created,Last_Login,Profile_Pic) VALUES('" +password+ "','"+firstname+"','"+lastname+"','"+tele+"','"+addr+"','"+NIC+"','"+email+"','"+regDate+"','"+lastLogin+"','"+ip2+"');";
     String r = con.execInsert(sql);
         System.out.println(r+"blaaaaa");
     return r;
@@ -225,14 +230,14 @@ public class User {
     
     public String addBSUser() throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();    
-    String sql = "INSERT INTO business_user(Password,Fname,Lname,Contact_No,Address,NIC,Email,Account_Created,Last_Login,Role,Description) VALUES('" +password+ "','"+firstname+"','"+lastname+"','"+tele+"','"+addr+"','"+NIC+"','"+email+"','"+regDate+"','"+lastLogin+"','"+role+"','"+desc+"');";
+    String sql = "INSERT INTO business_user(Password,Fname,Lname,Contact_No,Address,NIC,Email,Account_Created,Last_Login,Role,Description,Profile_Pic) VALUES('" +password+ "','"+firstname+"','"+lastname+"','"+tele+"','"+addr+"','"+NIC+"','"+email+"','"+regDate+"','"+lastLogin+"','"+role+"','"+desc+"','"+ip2+"');";
     String r = con.execInsert(sql);
     return r;
     }
     
     public String addSupplier() throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();    
-    String sql = "INSERT INTO customer(username,password,firstname,lastname,addr,dob,tele,regDate,gender,NIC,email,lastLogin) VALUES('" +username+ "','" +password+ "','"+firstname+"','"+lastname+"','"+addr+"','"+dob+"',"+tele+",'"+regDate+"','"+gender+"','"+NIC+"','"+email+"','"+lastLogin+"');";
+    String sql = "INSERT INTO supplier(Password,company_name,Contact,Address,Email,Account_Created,Last_Login,Bussiness_Regis_ID,Profile_Pic) VALUES('" +password+ "','"+cpname+"','"+tele+"','"+addr+"','"+email+"','"+regDate+"','"+lastLogin+"',"+regId+",'"+ip2+"');";
     String r = con.execInsert(sql);
     return r;
     }

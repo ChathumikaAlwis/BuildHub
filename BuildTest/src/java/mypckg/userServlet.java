@@ -8,9 +8,12 @@ package mypckg;
 
 import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -20,11 +23,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import mypckg.EncryptPw;
 import mypckg.User;
 
@@ -33,7 +38,8 @@ import mypckg.User;
  *
  * @author Chath
  */
-@WebServlet(urlPatterns = {"/userServlet"})
+@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
+@WebServlet(name = "/userServlet", urlPatterns = {"/userServlet"})
 public class userServlet extends HttpServlet {
 
     /**
@@ -105,6 +111,30 @@ public class userServlet extends HttpServlet {
         
         
         
+        
+        
+        //---------------------------------------------------------
+
+        if(request.getAttribute("image")!=null){
+        Part fpart = request.getPart("pic");
+        InputStream ips = null;
+        if(fpart!=null){
+            System.out.println(fpart.getName());
+            System.out.println(fpart.getSize());
+            System.out.println(fpart.getContentType());
+        ips = fpart.getInputStream();}
+        
+        u.setProfPic(ips);
+ }
+        
+         
+        //---------------------------------------------------------------
+        
+        
+        
+        
+        
+        
          //add normal user---------------------------------------------------------------------------------------------------------
         if(utype.equals("nmu")){
         
@@ -151,7 +181,7 @@ public class userServlet extends HttpServlet {
         
         
         //add supplier--------------------------------------------------------------------------------------------------
-        else if(utype=="sup"){
+        else if(utype.equals("sup")){
         
         cpname = request.getParameter("cpname");
         regId = request.getParameter("regId");
@@ -173,13 +203,18 @@ public class userServlet extends HttpServlet {
             request.setAttribute("status", "Inserted successfully!");
             s.setAttribute("username", email);
             System.out.println(status);
-            RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("project.jsp");
             rd.forward(request, response);        } 
         
         else if(Integer.parseInt(status)==-153)
         {
             request.setAttribute("status", "An account with this email already exists!" );
-            RequestDispatcher rd = request.getRequestDispatcher("registerNormalUser.jsp");
+            RequestDispatcher rd;
+            if(utype.equals("sup"))
+            rd = request.getRequestDispatcher("registerSupplier.jsp");
+            else if(utype.equals("nmu"))
+            rd = request.getRequestDispatcher("registerNormalUser.jsp");
+            else rd = request.getRequestDispatcher("registerBusinessUser.jsp");
             rd.forward(request, response);
         }
         

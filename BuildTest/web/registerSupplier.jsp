@@ -95,42 +95,45 @@
          <div class="container" id="contain" style="margin-top:120px;margin-bottom: 60px; color: #1B85D8">
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form>
+				<form name="registerNM" action="userServlet" method="POST">
 					<div class="col-sm-12">
 						
 							<div class="form-group">
 								<label>Company Name</label>
-								<input type="text" placeholder="Enter Company Name Here.." class="form-control">
+								<input name="cpname" type="text" placeholder="Enter Company Name Here.." class="form-control">
 							</div>
 											
 						<div class="form-group">
 							<label>Address</label>
-							<textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                                                        <textarea name="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
 						</div>	
 						
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>Contact Number</label>
-								<input type="text" placeholder="Enter Contact Number Here.." class="form-control">
+                                                                <input name="contact" type="text" placeholder="Enter Contact Number Here.." class="form-control">
 							</div>		
 							<div class="col-sm-6 form-group">
 								<label>Business Registration ID</label>
-								<input type="text" placeholder="Enter Business Registration ID Here.." class="form-control">
+								<input name="regId" type="text" placeholder="Enter Business Registration ID Here.." class="form-control">
 							</div>	
 						</div>						
 		
 					<div class="form-group">
+                                             <% String st = (String)request.getAttribute("status"); %>
 						<label>Email Address</label>
-						<input type="text" placeholder="Enter Email Address Here.." class="form-control">
+                                                <input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
+                                                <%if(st!=null){%>
+                                                <p style="color:red;font-size:12; "><%=st%></p><%}%>
 					</div>
                                           
 					<div class="form-group">
 						<label>Password</label>
-						<input type="password" placeholder="Enter Password Here.." class="form-control">
+                                                <input name="password" type="password" placeholder="Enter Password Here.." class="form-control">
 					</div>
                                         <div class="form-group">
 						<label>Re-Enter Password</label>
-						<input type="password" placeholder="Re-Enter Password Here.." class="form-control">
+                                                <input name="confpassword" type="password" placeholder="Re-Enter Password Here.." class="form-control">
 					</div>  
                              
                                             <div class="form-group">
@@ -138,7 +141,7 @@
                                                        <div class="input-group">
                                                          <span class="input-group-btn">
                                                            <span class="btn btn-default btn-file">
-                                                                Browse… <input type="file" accept="image/png, image/jpeg, image/gif" id="imgInp">
+                                                                Browse… <input name="image" type="file" accept="image/png, image/jpeg, image/gif" id="imgInp">
                                                            </span>
                                                          </span>
                                                         <input id='urlname'type="text" class="form-control" readonly>
@@ -146,8 +149,8 @@
                                                     <img id='img-upload'/>
                                               </div>
    
-                                            
-					<button type="button" class="btn btn-lg btn-primary">Submit</button>					
+                                            <input type="hidden" name="type" value="sup">
+					<button type="submit" class="btn btn-lg btn-primary">Submit</button>					
 					</div>
 				</form> 
 				</div>
