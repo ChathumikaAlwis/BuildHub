@@ -118,7 +118,7 @@ public class LoginServlet extends HttpServlet {
                     if(project == 0)
                     {
                          response.sendRedirect("create_project.jsp");    
-                         System.out.println("No Projects!");
+                       
                     }                
             }
             else

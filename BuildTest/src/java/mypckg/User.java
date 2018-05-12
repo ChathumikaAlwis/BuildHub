@@ -269,6 +269,7 @@ public class User {
     DbConnection con = new DbConnection();    
     String sql = "SELECT COUNT(Owner) FROM project WHERE Owner='"+ownerId+"'";
     ResultSet rs = con.executeSelect(sql);
+        System.out.println("");
     rs.next();
     String r = rs.getString(1);  
     return r;
@@ -278,6 +279,7 @@ public class User {
     DbConnection con = new DbConnection();    
     String sql = "SELECT ID FROM customer WHERE email='"+username+"'";
     ResultSet rs = con.executeSelect(sql);
+        System.out.println("");
     rs.next();
     String r = rs.getString(1);  
     return r;
