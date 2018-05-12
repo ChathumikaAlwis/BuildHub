@@ -13,6 +13,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Login</title>
+        
+        <script type="text/javascript">
+
+       </script> 
     </head>
     <body>
         <jsp:include page="header.html"/>
@@ -34,11 +38,13 @@
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                                        <input id="login-username" type="text" class="form-control" name="Email" value="" placeholder="email" required>                                        
                                     </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password" required>
                                     </div>
                                     
 
@@ -57,6 +63,7 @@
 
                                     <div class="col-sm-12 controls">
                                       <a id="btn-login" href="#" class="btn btn-primary">Login  </a>
+                                     <input type="submit" id="btn-login" class="btn btn-primary" value="Login" name="login" />
                                       
                                     </div>
                                 </div>
