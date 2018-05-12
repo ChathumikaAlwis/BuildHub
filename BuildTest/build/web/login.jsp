@@ -60,7 +60,6 @@
                                     <!-- Button -->
 
                                     <div class="col-sm-12 controls">
-                                      <a id="btn-login" href="#" class="btn btn-primary">Login  </a>
                                      <input type="submit" id="btn-login" class="btn btn-primary" value="Login" name="login" />
                                       
                                     </div>
