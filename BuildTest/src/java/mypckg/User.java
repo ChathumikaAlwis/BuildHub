@@ -239,7 +239,7 @@ public class User {
             
     public String validateUser() throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();    
-    String sql = "SELECT COUNT(cusid) FROM customer WHERE username='"+username+"' AND password='"+password+"'";
+    String sql = "SELECT COUNT(cusid) FROM customer WHERE email='"+username+"' AND password='"+password+"'";
     try{
      rs = con.executeSelect(sql);
     }
@@ -253,13 +253,25 @@ public class User {
     public String updateUser(String username) throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();
     String uname = username;
-    String sql = "UPDATE customer set lastLogin='"+LocalDateTime.now().toString() +"' WHERE username='"+uname+"'";
+    String sql = "UPDATE customer set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
     String r = con.execUpdate(sql);
-        System.out.println(r);
+    System.out.println(r);
     return r;
     }
 
-
-
-            
+    public String getProjects(String ownerId) throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = "SELECT COUNT(Owner) FROM project WHERE Owner='"+ownerId+"'";
+    ResultSet rs = con.executeSelect(sql);
+    String r = rs.getString(0);  
+    return r;
+    }
+        
+    public String getID() throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = "SELECT ID FROM customer WHERE email='"+username+"'";
+    ResultSet rs = con.executeSelect(sql);
+    String r = rs.getString(0);  
+    return r;
+    }
 }
