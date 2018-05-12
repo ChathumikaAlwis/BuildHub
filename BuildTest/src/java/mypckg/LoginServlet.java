@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String username = request.getParameter("Email");
         String password = request.getParameter("password");
         
         EncryptPw encrypt = new EncryptPw();
@@ -93,9 +93,12 @@ public class LoginServlet extends HttpServlet {
         
         User u = new User();
         u.setUsername(username);
+        System.out.println(password);
+        System.out.println(username);
         u.setPassword(password);
         try {
             int r = Integer.parseInt(u.validateUser());
+            System.out.println(r);
             
             if(r>0)
             {
