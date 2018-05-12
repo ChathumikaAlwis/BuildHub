@@ -276,7 +276,7 @@ public class User {
         
     public String getID() throws SQLException, ClassNotFoundException{       
     DbConnection con = new DbConnection();    
-    String sql = "SELECT ID FROM customer WHERE email='"+username+"'";
+    String sql = "SELECT ID FROM customer WHERE email='"+userrrrrname+"'";
     ResultSet rs = con.executeSelect(sql);
     String r = rs.getString(0);  
     return r;
