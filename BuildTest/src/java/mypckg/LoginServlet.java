@@ -104,13 +104,21 @@ public class LoginServlet extends HttpServlet {
             System.out.println(r);
             
             if(r>0)
-            {
-                //start session
+            {               
+                //SESSION LIST
+                /*
+                username    ---> email
+                usergroup   --->(Customer || BusinessUser || Supplier)
+                userID      ---> Based on usergroup
+                projectRole ---> BusinessUser - Role
+                */   
+                
                 HttpSession s = request.getSession(true);
                 int project = -1;
                 u.updateUser(username, usergroup);                           
-                s.setAttribute("username", username);  
-
+                s.setAttribute("username", username); 
+                s.setAttribute("usergroup", usergroup);
+                
                 if(usergroup.equals("Customer"))
                 {
                     project = Integer.parseInt(u.getProjects(u.getID()));
@@ -130,6 +138,7 @@ public class LoginServlet extends HttpServlet {
                     {
                         project = Integer.parseInt(u.getProjectRole(u.getBusinessRole(),u.getBusinessID()));
                         s.setAttribute("userID", u.getBusinessID());
+                        s.setAttribute("projectRole", u.getProjectRole(u.getBusinessRole(),u.getBusinessID()));
                         if(project >= 1)
                         {
                            response.sendRedirect("project_list.jsp");    
