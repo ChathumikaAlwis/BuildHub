@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     </head>
     <body>
         <jsp:include page="header.html"/>
@@ -42,8 +43,9 @@
         %>        
         
         
-        <div class="container-fluid" style="margin-top: 140px">
-        <h3><%=pname%></h3>        
+        <div class="container-fluid" style="margin-top: 90px">
+        <h1 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Project Name: <%=pname%></h1>
+        <br/>
             <ul class="nav nav-pills nav-justified col-sm-12">
     <li class="active"><a data-toggle="pill" href="#overview">OVERVIEW</a></li>
     <li><a data-toggle="pill" href="#post">POSTS</a></li>
@@ -52,20 +54,70 @@
     <li><a data-toggle="pill" href="#task">TASKS</a></li>
   </ul>
   
-            <br/>
+            <br/><br/><br/>
             
   <div class="tab-content">
     
-    <div id="overview" class="tab-pane fade in active" style="background-color: #0077e2">
+    <div id="overview" class="tab-pane fade in active">
               
-       Project Name : <h6><%=pname%></h6>
+       <!--Project Name : <h6><%=pname%></h6>
        Project Status : <h6><%=status%></h6>
        Project Start Date: <h6><%=sd%></h6>
        Project End Date: <h6><%=ed%></h6>
        Project Estimated Start Date: <h6><%=esd%></h6>
        Project Estimated End Date:<h6><%=eed%></h6>
        Location :<h6><%=loc%></h6>
-       Description : <h6><%=desc%></h6>
+       Description : <h6><%=desc%></h6> -->
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 style="font-family: 'Rubik Mono One', sans-serif;" >Project Name: <%=pname%></h3>
+            </div>
+            <div class="col-sm-6">
+                <%if(status.equals("ongoing"))
+                {%>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                      <h3 style="font-family: 'Rubik Mono One', sans-serif; color:red;" >Status: <%=status%></h3>  
+                    </div>
+                </div>    
+                <%}
+                else
+                {%>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                      <h3 style="font-family: 'Rubik Mono One', sans-serif; color:green;" >Status: <%=status%></h3>  
+                    </div>
+                </div>  
+                <%}%>
+                
+            </div>
+       </div>  
+                
+                
+       <div class="row">
+           <div class="col-sm-3">
+               <h3 style="font-family: 'Boogaloo', cursive;" >Start Date: <%=sd%></h3>
+           </div>
+           <div class="col-sm-3">
+               <h3 style="font-family: 'Boogaloo', cursive;" >End Date: <%=ed%></h3>
+           </div>
+           <div class="col-sm-3">
+               <h3 style="font-family: 'Boogaloo', cursive;" >Estimated Start Date: <%=esd%></h3>
+           </div>
+           <div class="col-sm-3">
+               <h3 style="font-family: 'Boogaloo', cursive;" >Estimated End Date: <%=eed%></h3>
+           </div>
+       </div>
+       
+      
+           <div class="col-sm-12">
+               <h2 style="font-family: 'Boogaloo', cursive;" >Description : <%=desc%></h2>
+           </div>
+           <div class="col-sm-12">
+               <h2 style="font-family: 'Boogaloo', cursive;" >Location: <%=loc%></h2>
+           </div>
+                     
     </div>
     
     
@@ -86,7 +138,7 @@
     </div>
     
     
-    <div id="member" class="tab-pane fade" style="background-color: #ef1a1a">
+    <div id="member" class="tab-pane fade">
                <%    
         String cusid=null,contractid=null,archid=null,intdesid=null,qsurvid=null,carpid=null;
         String cusname="n/a",contname="n/a",archiname="n/a",intdesname="n/a",qsurvname="n/a",carpname="n/a";           
@@ -140,24 +192,90 @@ try{
 }catch(Exception e){System.out.println(e.getMessage());}
 
                %>    
-               
-               
-               
-               
+                 
+     <div class="row">
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/customer.png" alt="customer" style="width:100%">
+        <div class="caption">
+            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Customer</h6>  
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= cusname %></h3>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/contractor.png" alt="contractor" style="width:100%">
+        <div class="caption">
+          <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Contractor</h6>   
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= contname %></h3>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/architect.jpg" alt="architect" style="width:100%">
+        <div class="caption">
+            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Architecture</h6> 
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= archiname %></h3>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/intdesigner.png" alt="interiordesigner" style="width:100%">
+        <div class="caption">
+          <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Interior Designer</h6>   
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= intdesname %></h3>
+        </div>
+    </div>
+  </div>      
+</div>
         
-    <h5>Customer Name : <%= cusname %></h5>    
-    <h5>Contractor Name : <%= contname %></h5>   
-    <h5>Architecture Name : <%= archiname %></h5>   
-    <h5>Interior Designer Name :<%= intdesname %></h5>
-    <h5>Interior Designer Name :<%= qsurvname %></h5>
-    <h5>Interior Designer Name :<%= carpname %></h5>
+        
+        <div class="row">
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/qsurvey.png" alt="quantitysurveyer" style="width:100%">
+        <div class="caption">
+           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Quantity Surveyer</h6>  
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= qsurvname %></h3>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="images/carpenter.png" alt="carpenter" style="width:100%">
+        <div class="caption">
+            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Carpenter</h6> 
+          <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= carpname %></h3>
+        </div>
+    </div>
+  </div>
+</div>
+
 
     
     
     </div>
     
     
-    <div id="task" class="tab-pane fade" style="background-color: #0077e2">
+    <div id="task" class="tab-pane fade">
+        
+        <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Status</th>
+        <th>Task Start Date</th>
+        <th>Task End Date</th>
+        <th>Estimated Start Date</th>
+        <th>Estimated End Date</th>
+        <th>Task Description</th>
+        <th>Task Moderator</th>
+      </tr>
+    </thead>
+    <tbody>
                <%    
         
         String sqltk = "SELECT name,status,start_date,end_date,est_start,est_end,description,moderator_id FROM task WHERE project_id="+projid+";";
@@ -181,18 +299,21 @@ rstmod.next(); String modlnm = rstmod.getString(2);
 
 %>
         
-        
-       Task Name : <h5><%= tname %></h5>
-       Task Status : <h5><%= tstatus %></h5>
-      Task Start Date : <h5><%= tsd %></h5>
-      Task End Date : <h5><%= ted %></h5>
-      Task Estimated Start Date : <h5><%= tesd %></h5>
-      Task Estimated Start Date :<h5><%= teed %></h5>
-      Task Description :<h5><%= tdesc %></h5>
-      Task Moderator :<h5><%= modlnm %></h5>
-   
+   <tr>
+        <td><%= tname %></td>
+        <td><%= tstatus %></td>
+        <td><%= tsd %></td>
+        <td><%= ted %></td>
+        <td><%= tesd %></td>
+        <td><%= teed %></td>
+        <td><%= tdesc %></td>
+        <td><%= modlnm %></td>
+      </tr>
     
     <%}%>
+    
+    </tbody>
+  </table>
     
     </div>  
   </div>
