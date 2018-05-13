@@ -336,7 +336,7 @@ public class User {
     ResultSet rs = con.executeSelect(sql);
     rs.next();
     String r = rs.getString(1);  
-    System.out.println(r + "BU_ID");          
+    System.out.println(r + " BU_ID");          
     return r;
     }
     
@@ -346,42 +346,43 @@ public class User {
     ResultSet rs = con.executeSelect(sql);
     rs.next();
     String r = rs.getString(1);  
-    System.out.println(r + "BU_ID");          
+    System.out.println(r + " BU_ROLE");          
     return r;
     }
     
     public String getProjectRole(String role, String ID) throws SQLException, ClassNotFoundException{       
     DbConnection con = new DbConnection();    
     String sql = null;
+    
     if(role.equals("Contractor"))
     {
-        sql = "SELECT COUNT("+role+") FROM project_workers WHERE Contractor_Id ="+ID+"";
+        sql = "SELECT COUNT(Contractor_Id) FROM project_workers WHERE Contractor_Id ="+ID+"";
     }
     else
         if(role.equals("Architect"))
         {
-            sql = "SELECT COUNT("+role+") FROM project_workers WHERE Architect_Id ="+ID+"";
+            sql = "SELECT COUNT(Architect_Id) FROM project_workers WHERE Architect_Id ="+ID+"";
         }
         else
             if(role.equals("Interior Designer"))
             {
-                sql = "SELECT COUNT("+role+") FROM project_workers WHERE IntDesigner_Id ="+ID+"";
+                sql = "SELECT COUNT(IntDesigner_Id) FROM project_workers WHERE IntDesigner_Id ="+ID+"";
             }
             else
                 if(role.equals("Quantity Surveyor"))
                 {
-                    sql = "SELECT COUNT("+role+") FROM project_workers WHERE Quantity_surv_Id ="+ID+"";
+                    sql = "SELECT COUNT(Quantity_surv_Id) FROM project_workers WHERE Quantity_surv_Id ="+ID+"";
                 }
                 else
                     if(role.equals("Carpenter"))
                     {
-                        sql = "SELECT COUNT("+role+") FROM project_workers WHERE Carpenter_Id ="+ID+"";
+                        sql = "SELECT COUNT(Carpenter_Id) FROM project_workers WHERE Carpenter_Id ="+ID+"";
                     }
                     
-    ResultSet rs = con.executeSelect(sql);
-    System.out.println("");
+    ResultSet rs = con.executeSelect(sql);    
     rs.next();
     String r = rs.getString(1);  
+    System.out.println(r);
     return r;
     }
 }
