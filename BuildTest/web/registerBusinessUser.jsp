@@ -98,7 +98,6 @@ var check = function() {
                                                                     <option>Architect</option>
                                                                     <option>Interior Designer</option>
                                                                     <option>Quantity Surveyor</option>
-                                                                    <option>Architect</option>
                                                                     </select>   
 							</div>
 						</div>						
