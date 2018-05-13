@@ -122,19 +122,19 @@ try{
 }catch(Exception e){System.out.println(e.getMessage());}   
 
 try{
-        String sqlintdes = "SELECT fname,lname FROM business_user WHERE id="+intdesid+";";System.out.println(intdesid);
+        String sqlintdes = "SELECT fname,lname FROM business_user WHERE id="+intdesid+";";
         ResultSet rsintdesname = con.executeSelect(sqlintdes);
         rsintdesname.next(); if(rsintdesname.getString(2)!=null){ intdesname = rsintdesname.getString(2);}
 }catch(Exception e){System.out.println(e.getMessage());}   
                
 try{
-        String sqlqs = "SELECT fname,lname FROM business_user WHERE id="+qsurvid+";";System.out.println(intdesid);
+        String sqlqs = "SELECT fname,lname FROM business_user WHERE id="+qsurvid+";";
         ResultSet rsqsname = con.executeSelect(sqlqs);
         rsqsname.next(); if(rsqsname.getString(2)!=null){ qsurvname = rsqsname.getString(2);}
 }catch(Exception e){System.out.println(e.getMessage());}   
 
 try{
-        String sqlcarp = "SELECT fname,lname FROM business_user WHERE id="+carpid+";";System.out.println(intdesid);
+        String sqlcarp = "SELECT fname,lname FROM business_user WHERE id="+carpid+";";
         ResultSet rscarpname = con.executeSelect(sqlcarp);
         rscarpname.next(); if(rscarpname.getString(2)!=null){ carpname = rscarpname.getString(2);}
 }catch(Exception e){System.out.println(e.getMessage());}
