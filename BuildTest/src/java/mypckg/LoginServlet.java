@@ -156,8 +156,7 @@ public class LoginServlet extends HttpServlet {
                             response.sendRedirect("SupplierProjectList.jsp");                              
                         }                
                 
-                s.setAttribute("usergroup", usergroup);
-                                                                                                                                 
+                s.setAttribute("usergroup", usergroup);                                                                                                                                 
             }
             else
             {

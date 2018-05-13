@@ -88,6 +88,7 @@ public class AddProjectServlet extends HttpServlet {
         try {
             con.execInsert(sql);
             System.out.println("Project Created!");
+            response.sendRedirect("project_list.jsp");   
         } catch (SQLException | ClassNotFoundException ex) 
         {
             System.out.println("FAILED!");
