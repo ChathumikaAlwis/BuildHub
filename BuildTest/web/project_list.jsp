@@ -16,7 +16,7 @@
     <body>
         <h1>Project List</h1>
         <%
-            /*
+            /* Sessions
             username    ---> email
             usergroup   --->(Customer || BusinessUser || Supplier)
             userID      ---> Based on usergroup

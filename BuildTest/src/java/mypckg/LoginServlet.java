@@ -153,14 +153,11 @@ public class LoginServlet extends HttpServlet {
                         if(usergroup.equals("Supplier"))
                         {                           
                             s.setAttribute("userID", u.getProjectSupplyID());                           
-                            response.sendRedirect("project_list.jsp");                              
+                            response.sendRedirect("SupplierProjectList.jsp");                              
                         }                
                 
                 s.setAttribute("usergroup", usergroup);
-                                      
-                u.getBusinessID();
-                u.getBusinessRole();
-                                                                            
+                                                                                                                                 
             }
             else
             {

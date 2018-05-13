@@ -298,13 +298,13 @@ public class User {
             sql = "UPDATE business_user set Last_Login='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
         }
         else
-            if(usergroup.equals("supplier"))
+            if(usergroup.equals("Supplier"))
             {
                 sql = "UPDATE supplier set Last_Login='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
             }
     
     r = con.execUpdate(sql);
-    System.out.println(r+" userupdate");
+    System.out.println(r +" userupdate");
     return r;
     }
           
