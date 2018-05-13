@@ -78,9 +78,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("Email");
-        String password = request.getParameter("password");
-        
+        String username     = request.getParameter("Email");
+        String password     = request.getParameter("password");
+        String usergroup    = request.getParameter("group1");
         EncryptPw encrypt = new EncryptPw();
         encrypt.setPw(password);
         try {
@@ -95,21 +95,24 @@ public class LoginServlet extends HttpServlet {
         u.setUsername(username);
         System.out.println(password);
         System.out.println(username);
+        System.out.println(usergroup);
+        
         u.setPassword(password);
         try {
-            int r = Integer.parseInt(u.validateUser());
+            
+            int r = Integer.parseInt(u.validateUser(usergroup));
             System.out.println(r);
             
             if(r>0)
             {
-                u.updateUser(username);
+                u.updateUser(username, usergroup);
                 //start session
                 HttpSession s = request.getSession(true);
                 s.setAttribute("username", username);                                           
                 int project = Integer.parseInt(u.getProjects(u.getID()));
                 s.setAttribute("userID", u.getID());
-                
-                
+                s.setAttribute("usergroup", usergroup);
+                                
                 if(project >= 1)
                 {
                    response.sendRedirect("project.jsp");    

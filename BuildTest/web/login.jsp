@@ -35,6 +35,12 @@
                             
                         <form id="loginform" action="LoginServlet" method="post" class="form-horizontal" role="form">
                             <h2> <%=request.getAttribute("status") %> </h2>
+                            <fieldset id="group1">
+                            <input type="radio" id="customer-Radio" name="group1" value="Customer"> <h3> Customer </h3>
+                            <input type="radio" id="business-Radio" name="group1" value="BusinessUser"> <h3> Business User </h3>
+                            <input type="radio" id="supplier-Radio" name="group1" value="Supplier"> <h3> Supplier </h3>
+                            
+                            </fieldset>
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                                       
                                         <input id="login-username" type="text" class="form-control" name="Email" value="" placeholder="email" required>                                        

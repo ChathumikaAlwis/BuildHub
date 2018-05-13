@@ -242,25 +242,67 @@ public class User {
     return r;
     }
             
-    public String validateUser() throws SQLException, ClassNotFoundException{
-    DbConnection con = new DbConnection();    
-    String sql = "SELECT COUNT(ID) FROM customer WHERE email='"+username+"' AND password='"+password+"'";
-    try{
-     rs = con.executeSelect(sql);
+    public String validateUser(String usergroup) throws SQLException, ClassNotFoundException{
+    DbConnection con = new DbConnection();   
+    String sql;
+    String r = null;
+    if(usergroup.equals("Customer"))
+    {
+        sql = "SELECT COUNT(ID) FROM customer WHERE Email='"+username+"' AND password='"+password+"'";
+        try{
+        rs = con.executeSelect(sql);
+        }
+        catch(Exception e){return e.getMessage();}
+        rs.next();
+        r= rs.getString(1);
     }
-    catch(Exception e){return e.getMessage();}
-    rs.next();
-    String r= rs.getString(1);
+    else
+        if(usergroup.equals("BusinessUser"))
+        {
+            sql = "SELECT COUNT(ID) FROM business_user WHERE Email='"+username+"' AND password='"+password+"'";
+            try{
+            rs = con.executeSelect(sql);
+            }
+            catch(Exception e){return e.getMessage();}
+            rs.next();
+            r= rs.getString(1);
+        }
+        else
+            if(usergroup.equals("BusinessUser"))
+            {
+                sql = "SELECT COUNT(ID) FROM supplier WHERE Email='"+username+"' AND password='"+password+"'";
+                try{
+                rs = con.executeSelect(sql);
+                }
+                catch(Exception e){return e.getMessage();}
+                rs.next();
+                r= rs.getString(1);
+            }
 
     return r;
     }     
     
-    public String updateUser(String username) throws SQLException, ClassNotFoundException{
+    public String updateUser(String username, String usergroup) throws SQLException, ClassNotFoundException{
     DbConnection con = new DbConnection();
     String uname = username;
-    String sql = "UPDATE customer set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
-    String r = con.execUpdate(sql);
-        System.out.println(r);
+    String sql = null;
+    String r = null;
+    if(usergroup.equals("Customer"))
+    {
+       sql = "UPDATE customer set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+    }
+    else
+        if(usergroup.equals("BusinessUser"))
+        {
+            sql = "UPDATE business_user set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+        }
+        else
+            if(usergroup.equals("BusinessUser"))
+            {
+                sql = "UPDATE supplier set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+            }
+    
+    r = con.execUpdate(sql);
     System.out.println(r);
     return r;
     }
