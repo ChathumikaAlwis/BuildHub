@@ -43,49 +43,19 @@
              </style>
              
              <script>
-                 $(document).ready( function() {
-    
-    	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
-
-		$('.btn-file :file').on('fileselect', function(event, label) {
-		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
-		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
-	    
-		});
-		
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-		        }
-		        
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
-
-		$("#imgInp").change(function(){
-		    readURL(this);
-		});
-		
-		$("#clear").click(function(){
-		    $('#img-upload').attr('src','');
-		    $('#urlname').val('');
-		});
-	});
-                 </script>
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+    document.getElementById('submit').disabled = false;
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+    document.getElementById('submit').disabled = true;
+  }
+}
+</script>
     </head>
     <body>
          <jsp:include page="header.html"/>
@@ -101,61 +71,50 @@
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>First Name</label>
-								<input name="fname" type="text" placeholder="Enter First Name Here.." class="form-control">
+								<input name="fname" type="text" placeholder="Enter First Name Here.." class="form-control" required  pattern="[^0123456789]+" title="Invalid input">
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>Last Name</label>
-								<input name="lname" type="text"  placeholder="Enter Last Name Here.." class="form-control">
+								<input name="lname" type="text"  placeholder="Enter Last Name Here.." class="form-control" required  pattern="[^0123456789]+" title="Invalid input">
 							</div>
 						</div>					
 						<div class="form-group">
 							<label>Address</label>
-							<textarea name="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+							<textarea name="address" placeholder="Enter Address Here.." rows="3" class="form-control" required></textarea>
 						</div>	
 						
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>Contact Number</label>
-								<input name="contact" type="text" placeholder="Enter Contact Number Here.." class="form-control">
+								<input name="contact" type="text" placeholder="Enter Contact Number Here.." class="form-control"   required pattern="[0123456789]{10}" title="Enter Numbers Only!">
 							</div>		
 							<div class="col-sm-6 form-group">
 								<label>NIC</label>
-								<input name="nic" type="text" placeholder="Enter National ID Number Here.." class="form-control">
+								<input name="nic" type="text" placeholder="Enter National ID Number Here.." class="form-control" required pattern="[0123456789]{9}[v]{1}" title="Invalid Format!">
 							</div>	
 						</div>						
 		
 					<div class="form-group">
                                             <% String st = (String)request.getAttribute("status"); %>
 						<label>Email Address</label>
-						<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
+						<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control" required>
                                                 <%if(st!=null){%>
                                                 <p style="color:red;font-size:12; "><%=st%></p><%}%>
                                         </div>
                                           
 					<div class="form-group">
 						<label>Password</label>
-						<input name="password" type="password" placeholder="Enter Password Here.." class="form-control">
+                                                <span id='message'></span>
+						<input id="password" onkeyup='check();' name="password" type="password" placeholder="Enter Password Here.." class="form-control" required>
 					</div>
                                         <div class="form-group">
 						<label>Re-Enter Password</label>
-                                                <input name="confirmpassword" type="password" placeholder="Re-Enter Password Here.." class="form-control">
-					</div>  
+                                                <input id="confirm_password" onkeyup='check();' name="confirm_password" type="password" placeholder="Re-Enter Password Here.." class="form-control" required>
+                                        </div>  
                              
-                                            <div class="form-group">
-                                                 <label>Upload Image</label>
-                                                       <div class="input-group">
-                                                         <span class="input-group-btn">
-                                                           <span class="btn btn-default btn-file">
-                                                               Browse… <input name="image" type="file" accept="image/png, image/jpeg, image/gif" id="imgInp">
-                                                           </span>
-                                                         </span>
-                                                        <input id='urlname'type="text" class="form-control" readonly>
-                                                        </div>
-                                                    <img id='img-upload'/>
-                                              </div>
-   
+                                      
                                              <input type="hidden" name="type" value="nmu">
-					<button type="submit" class="btn btn-lg btn-primary">Submit</button>					
+                                             <button type="submit" class="btn btn-lg btn-primary" name="submit" id="submit" >Submit</button>					
 					</div>
 				</form> 
 				</div>

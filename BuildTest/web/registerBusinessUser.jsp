@@ -49,9 +49,11 @@ var check = function() {
     document.getElementById('confirm_password').value) {
     document.getElementById('message').style.color = 'green';
     document.getElementById('message').innerHTML = 'matching';
+    document.getElementById('submit').disabled = false;
   } else {
     document.getElementById('message').style.color = 'red';
     document.getElementById('message').innerHTML = 'not matching';
+    document.getElementById('submit').disabled = true;
   }
 }
 </script>            
@@ -123,7 +125,7 @@ var check = function() {
                                         </div>  
                                         
                                             <input type="hidden" name="type" value="bsu">
-					<button type="submit" class="btn btn-lg btn-primary">Submit</button>					
+					<button type="submit" class="btn btn-lg btn-primary" name="submit" id="submit" >Submit</button>					
 					</div>
 				</form> 
 				</div>
