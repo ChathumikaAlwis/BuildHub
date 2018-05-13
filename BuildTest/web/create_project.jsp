@@ -26,7 +26,7 @@
 
       <img src="images/oops.jpg" alt="oops" class="img-responsive">
       <h1 STYLE="font-family:Faster One; font-size: 33px">YOU DON'T HAVE PROJECTS!</h1>
-      <button type="button" class="btn btn-primary btn-lg">CREATE PROJECT</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location='addProject.jsp'">CREATE PROJECT</button>
     </div>
 
 </div>
