@@ -19,18 +19,21 @@
         String oid = (String) session.getAttribute("userID");
         DbConnection con = new DbConnection(); 
             System.out.println(oid);
-        String sql = "SELECT name,status FROM project WHERE owner="+ oid +";";
+        String sql = "SELECT name,status,id FROM project WHERE owner="+ oid +";";
         ResultSet r = con.executeSelect(sql);
-        r.next();
+        
+                while(r.next()){
+        
         String pname = r.getString(1);
         String status = r.getString(2);
-        
-        while(r.next()){
+        String pId = r.getString(3);
         %>
-     
+  
         
-     <h1><%= pname %></h1>   
-     <h1><%= status %></h1>   
+      
+     <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
+     <p><%= status %></p> 
+     
         <%}%>
          
         
