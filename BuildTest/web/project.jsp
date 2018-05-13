@@ -17,45 +17,43 @@
     </head>
     <body>
         <jsp:include page="header.html"/>
-        
-<div class="container-fluid text-center">    
-
-<div class="col-sm-12" style="margin-top:120px">
-    
-<ul class="nav nav-pills nav-justified">
-    <li class="active"><a data-toggle="pill" href="#projectOverview">OVERVIEW</a></li>
-    <li><a data-toggle="pill" href="#projectPosts">POSTS</a></li>
-    <li><a data-toggle="pill" href="#projectThreads">THREADS</a></li>
-    <li><a data-toggle="pill" href="#projectMembers">MEMBERS</a></li>
-    <li><a data-toggle="pill" href="#projectTasks">TASKS</a></li>
-</ul>
-    
-</div>
- 
-<div class="tab-content col-sm-12">
-    <div id="projectOverview" class="tab-pane fade in active">
-        <iframe  src="projectOverview.jsp" name="iframe" style="width:100%;height:1000px; border: 0px">   
-    </iframe>
+        <div class="container-fluid" style="margin-top: 140px">
+                
+            <ul class="nav nav-pills nav-justified col-sm-12">
+    <li class="active"><a data-toggle="pill" href="#overview">OVERVIEW</a></li>
+    <li><a data-toggle="pill" href="#post">POSTS</a></li>
+    <li><a data-toggle="pill" href="#thread">THREADS</a></li>
+    <li><a data-toggle="pill" href="#member">MEMBERS</a></li>
+    <li><a data-toggle="pill" href="#task">TASKS</a></li>
+  </ul>
+  
+            <br/>
+            
+  <div class="tab-content">
+    <div id="overview" class="tab-pane fade in active" style="background-color: #0077e2">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
-    <div id="projectPosts" class="tab-pane fade">
-      <iframe  src="projectPosts.jsp" name="iframe" style="width:100%;height:1000px; border: 0px">   
-    </iframe>
+    <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
-    <div id="projectThreads" class="tab-pane fade">
-      <iframe  src="projectThreads.jsp" name="iframe" style="width:100%;height:1000px; border: 0px">   
-    </iframe>
+    <div id="thread" class="tab-pane fade" style="background-color: #0077e2">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
     </div>
-    <div id="projectMembers" class="tab-pane fade">
-     <iframe  src="projectMembers.jsp" name="iframe" style="width:100%;height:1000px; border: 0px">   
-    </iframe>
+    <div id="member" class="tab-pane fade" style="background-color: #ef1a1a">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </div>
-    <div id="projectTasks" class="tab-pane fade">
-      <iframe  src="projectTasks.jsp" name="iframe" style="width:100%;height:1000px; border: 0px">   
-    </iframe>
-    </div>
+    <div id="task" class="tab-pane fade" style="background-color: #0077e2">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>  
   </div>
-    
-    </div>
+
+        
+        </div>   
         <jsp:include page="footer.html"/>
     </body>
 </html>
