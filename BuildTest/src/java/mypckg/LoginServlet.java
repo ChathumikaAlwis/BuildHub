@@ -104,11 +104,11 @@ public class LoginServlet extends HttpServlet {
             {
                 u.updateUser(username);
                 //start session
-                 HttpSession s = request.getSession(true);
-                 s.setAttribute("username", username);
-                              
-                 
+                HttpSession s = request.getSession(true);
+                s.setAttribute("username", username);                                           
                 int project = Integer.parseInt(u.getProjects(u.getID()));
+                s.setAttribute("userID", u.getID());
+                
                 
                 if(project >= 1)
                 {
