@@ -268,7 +268,7 @@ public class User {
             r= rs.getString(1);
         }
         else
-            if(usergroup.equals("BusinessUser"))
+            if(usergroup.equals("Supplier"))
             {
                 sql = "SELECT COUNT(ID) FROM supplier WHERE Email='"+username+"' AND password='"+password+"'";
                 try{
@@ -289,21 +289,21 @@ public class User {
     String r = null;
     if(usergroup.equals("Customer"))
     {
-       sql = "UPDATE customer set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+       sql = "UPDATE customer set Last_Login='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
     }
     else
         if(usergroup.equals("BusinessUser"))
         {
-            sql = "UPDATE business_user set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+            sql = "UPDATE business_user set Last_Login='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
         }
         else
-            if(usergroup.equals("BusinessUser"))
+            if(usergroup.equals("supplier"))
             {
-                sql = "UPDATE supplier set lastLogin='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
+                sql = "UPDATE supplier set Last_Login='"+LocalDateTime.now().toString() +"' WHERE email='"+uname+"'";
             }
     
     r = con.execUpdate(sql);
-    System.out.println(r);
+    System.out.println(r+" userupdate");
     return r;
     }
           
