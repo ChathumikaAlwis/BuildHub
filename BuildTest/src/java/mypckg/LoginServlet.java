@@ -97,6 +97,14 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username);
         System.out.println(usergroup);
         
+        //SESSION LIST
+        /*
+        username    ---> email
+        usergroup   --->(Customer || BusinessUser || Supplier)
+        userID      ---> Based on usergroup
+        projectRole ---> BusinessUser - Role
+        */   
+        
         u.setPassword(password);
         try {
             
@@ -104,15 +112,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(r);
             
             if(r>0)
-            {               
-                //SESSION LIST
-                /*
-                username    ---> email
-                usergroup   --->(Customer || BusinessUser || Supplier)
-                userID      ---> Based on usergroup
-                projectRole ---> BusinessUser - Role
-                */   
-                
+            {                                            
                 HttpSession s = request.getSession(true);
                 int project = -1;
                 u.updateUser(username, usergroup);                           
@@ -152,17 +152,9 @@ public class LoginServlet extends HttpServlet {
                     else
                         if(usergroup.equals("Supplier"))
                         {
-//                            project = Integer.parseInt(u.getProjects(u.getID()));
-//                            s.setAttribute("userID", u.getID());
-//                            if(project >= 1)
-//                            {
-//                               response.sendRedirect("project_list.jsp");    
-//                            }
-//                            else
-//                                if(project == 0)
-//                                {
-//                                    response.sendRedirect("create_project.jsp");                          
-//                                } 
+                            project = Integer.parseInt(u.getProjects(u.getID()));
+                            s.setAttribute("userID", u.getProjectSupplyID());                           
+                            response.sendRedirect("project_list.jsp");                              
                         }
                 
                 

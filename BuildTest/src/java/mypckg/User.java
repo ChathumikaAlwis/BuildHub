@@ -385,4 +385,14 @@ public class User {
     System.out.println(r);
     return r;
     }
+    
+    public String getProjectSupplyID() throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = "SELECT ID FROM supplier WHERE email='"+username+"'";
+    ResultSet rs = con.executeSelect(sql);   
+    rs.next();
+    String r = rs.getString(1);  
+    System.out.println(r + "cusID");
+    return r;
+    }
 }
