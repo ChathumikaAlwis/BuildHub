@@ -105,24 +105,64 @@ public class LoginServlet extends HttpServlet {
             
             if(r>0)
             {
-                u.updateUser(username, usergroup);
                 //start session
                 HttpSession s = request.getSession(true);
-                s.setAttribute("username", username);                                           
-                int project = Integer.parseInt(u.getProjects(u.getID()));
-                s.setAttribute("userID", u.getID());
-                s.setAttribute("usergroup", usergroup);
-                                
-                if(project >= 1)
+                int project = -1;
+                u.updateUser(username, usergroup);                           
+                s.setAttribute("username", username);  
+
+                if(usergroup.equals("Customer"))
                 {
-                   response.sendRedirect("project_list.jsp");    
+                    project = Integer.parseInt(u.getProjects(u.getID()));
+                    s.setAttribute("userID", u.getID());
+                    if(project >= 1)
+                    {
+                       response.sendRedirect("project_list.jsp");    
+                    }
+                    else
+                        if(project == 0)
+                        {
+                            response.sendRedirect("create_project.jsp");                          
+                        } 
                 }
                 else
-                    if(project == 0)
+                    if(usergroup.equals("BusinessUser"))
                     {
-                         response.sendRedirect("create_project.jsp");    
+                        project = Integer.parseInt(u.getProjectRole());
+                        s.setAttribute("userID", u.getBusinessID());
+                        if(project >= 1)
+                        {
+                           response.sendRedirect("project_list.jsp");    
+                        }
+                        else
+                            if(project == 0)
+                            {
+                                response.sendRedirect("create_project.jsp");                          
+                            } 
+                    }
+                    else
+                        if(usergroup.equals("Supplier"))
+                        {
+                            project = Integer.parseInt(u.getProjects(u.getID()));
+                            s.setAttribute("userID", u.getID());
+                            if(project >= 1)
+                            {
+                               response.sendRedirect("project_list.jsp");    
+                            }
+                            else
+                                if(project == 0)
+                                {
+                                    response.sendRedirect("create_project.jsp");                          
+                                } 
+                        }
+                
+                
+                s.setAttribute("usergroup", usergroup);
                        
-                    }                
+                
+                u.getBusinessID();
+                u.getBusinessRole();
+                                                                            
             }
             else
             {
