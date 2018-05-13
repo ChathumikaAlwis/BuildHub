@@ -128,7 +128,7 @@ public class LoginServlet extends HttpServlet {
                 else
                     if(usergroup.equals("BusinessUser"))
                     {
-                        project = Integer.parseInt(u.getProjectRole());
+                        project = Integer.parseInt(u.getProjectRole(u.getBusinessRole(),u.getBusinessID()));
                         s.setAttribute("userID", u.getBusinessID());
                         if(project >= 1)
                         {
@@ -137,23 +137,23 @@ public class LoginServlet extends HttpServlet {
                         else
                             if(project == 0)
                             {
-                                response.sendRedirect("create_project.jsp");                          
+                                response.sendRedirect("homepage.html");                          
                             } 
                     }
                     else
                         if(usergroup.equals("Supplier"))
                         {
-                            project = Integer.parseInt(u.getProjects(u.getID()));
-                            s.setAttribute("userID", u.getID());
-                            if(project >= 1)
-                            {
-                               response.sendRedirect("project_list.jsp");    
-                            }
-                            else
-                                if(project == 0)
-                                {
-                                    response.sendRedirect("create_project.jsp");                          
-                                } 
+//                            project = Integer.parseInt(u.getProjects(u.getID()));
+//                            s.setAttribute("userID", u.getID());
+//                            if(project >= 1)
+//                            {
+//                               response.sendRedirect("project_list.jsp");    
+//                            }
+//                            else
+//                                if(project == 0)
+//                                {
+//                                    response.sendRedirect("create_project.jsp");                          
+//                                } 
                         }
                 
                 
