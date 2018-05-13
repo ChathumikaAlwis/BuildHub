@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.Enumeration;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -335,7 +336,52 @@ public class User {
     ResultSet rs = con.executeSelect(sql);
     rs.next();
     String r = rs.getString(1);  
-    System.out.println(r + "BUID");
+    System.out.println(r + "BU_ID");          
+    return r;
+    }
+    
+    public String getBusinessRole() throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = "SELECT Role FROM business_user WHERE email='"+username+"'";
+    ResultSet rs = con.executeSelect(sql);
+    rs.next();
+    String r = rs.getString(1);  
+    System.out.println(r + "BU_ID");          
+    return r;
+    }
+    
+    public String getProjectRole(String role, String ID) throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = null;
+    if(role.equals("Contractor"))
+    {
+        sql = "SELECT COUNT("+role+") FROM project_workers WHERE Contractor_Id ="+ID+"";
+    }
+    else
+        if(role.equals("Architect"))
+        {
+            sql = "SELECT COUNT("+role+") FROM project_workers WHERE Architect_Id ="+ID+"";
+        }
+        else
+            if(role.equals("Interior Designer"))
+            {
+                sql = "SELECT COUNT("+role+") FROM project_workers WHERE IntDesigner_Id ="+ID+"";
+            }
+            else
+                if(role.equals("Quantity Surveyor"))
+                {
+                    sql = "SELECT COUNT("+role+") FROM project_workers WHERE Quantity_surv_Id ="+ID+"";
+                }
+                else
+                    if(role.equals("Carpenter"))
+                    {
+                        sql = "SELECT COUNT("+role+") FROM project_workers WHERE Carpenter_Id ="+ID+"";
+                    }
+                    
+    ResultSet rs = con.executeSelect(sql);
+    System.out.println("");
+    rs.next();
+    String r = rs.getString(1);  
     return r;
     }
 }
