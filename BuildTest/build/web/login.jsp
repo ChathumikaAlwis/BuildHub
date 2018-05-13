@@ -16,12 +16,16 @@
         
         <script>
        function radioValidate() {
-           if(document.getElementById('customer-Radio').checked == false || document.getElementById('business-Radio').checked == false || document.getElementById('supplier-Radio').checked == false) 
+           if(document.getElementById('customer-Radio').checked || document.getElementById('business-Radio').checked || document.getElementById('supplier-Radio').checked) 
            {
-            document.getElementById('message').innerHTML = 'Select A Radio Button!';
+            return true;
+           }
+           
+           else
+           {
+               document.getElementById('message').innerHTML = 'Select A Radio Button!';
             return false;
            }
-            
 }
        </script> 
     </head>
