@@ -14,8 +14,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Login</title>
         
-        <script type="text/javascript">
-
+        <script>
+       function radioValidate() {
+           if(document.getElementById('customer-Radio').checked == false || document.getElementById('business-Radio').checked == false || document.getElementById('supplier-Radio').checked == false) 
+           {
+            document.getElementById('message').innerHTML = 'Select A Radio Button!';
+            return false;
+           }
+            
+}
        </script> 
     </head>
     <body>
@@ -31,21 +38,22 @@
 
                     <div style="padding-top:30px" class="panel-body" >
      
-                        <form id="loginform" action="LoginServlet" method="post" class="form-horizontal" role="form">
+                        <form id="loginform" action="LoginServlet" onsubmit="return radioValidate()" method="post" class="form-horizontal" role="form">
                             
-                            <div class="row col-sm-12 text-center">
+                            <div class="row col-sm-12">
+                                <span id='message' class="text-danger"></span>
                                 <fieldset id="group1">
-                                <div class="col-sm-4 ">
+                                <div class="col-sm-4 text-center">
                                     <label class="radio-inline">
                                     <input type="radio" id="customer-Radio" name="group1" value="Customer">Customer 
                                     </label>
                                 </div>
-                                <div class="col-sm-4 ">
+                                <div class="col-sm-4 text-center">
                                     <label class="radio-inline">
                                     <input type="radio" id="business-Radio" name="group1" value="BusinessUser">Business User
                                     </label>
                                 </div>
-                                <div class="col-sm-4 ">
+                                <div class="col-sm-4 text-center">
                                     <label class="radio-inline">
                                     <input type="radio" id="supplier-Radio" name="group1" value="Supplier">Supplier  
                                     </label>
