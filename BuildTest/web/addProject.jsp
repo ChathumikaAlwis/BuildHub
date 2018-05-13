@@ -16,7 +16,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
         <title>Add Project</title>
         <style>
-          
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css");  
             <% 
                 String uid  = (String) session.getAttribute("userID");
 
@@ -26,7 +26,7 @@
                     }                  
             %>
             
-@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css");
+    
       #contain {
     max-width: 750px; 
         </style>
