@@ -40,7 +40,7 @@
 	<div class="col-lg-12 well">
 	<div class="row">
             
-            <form name="addProject" action="" method="POST">
+            <form name="addProject" action="AddProjectServlet" method="POST">
             
 					<div class="col-sm-12">
 						

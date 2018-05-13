@@ -84,9 +84,9 @@ public class userServlet extends HttpServlet {
         String regId,cpname,username; String password,utype;
         int tele; String fname; String lname; String addr; String NIC;  String email;String llogin; String role; String desc;
         String rdate;
-         utype = request.getParameter("type");
-         addr = request.getParameter("address");
-         tele =  Integer.parseInt(request.getParameter("contact"));         
+        utype = request.getParameter("type");
+        addr = request.getParameter("address");
+        tele =  Integer.parseInt(request.getParameter("contact"));         
         email = request.getParameter("email");
         password = request.getParameter("password");
         rdate = LocalDate.now().toString();       
