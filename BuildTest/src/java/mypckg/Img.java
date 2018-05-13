@@ -26,7 +26,7 @@ public void getImg(String Name, Blob img) throws SQLException, IOException{
         
         String fpath=null;
         String inameedit = Name.replaceAll("\\s+","");
-        fpath = "C:\\Users\\Chath\\Documents\\NetBeansProjects\\BuildTest\\web\\images\\"+inameedit+".jpg";
+        fpath = "C:\\Users\\Guest1\\Documents\\GitHub\\BuildHub\\BuildTest\\web\\images\\post\\"+inameedit+".jpg";
         
        // System.out.println(fpath);
         ips = img.getBinaryStream();

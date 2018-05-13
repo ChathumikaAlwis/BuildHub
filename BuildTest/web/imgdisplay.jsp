@@ -18,14 +18,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1><%= request.getAttribute("msg") %></h1>
-        <% String iname= "c1"; %>
         
-        <%
+        <h1><%= request.getAttribute("msg") %></h1>
+        <% String uname=request.getAttribute("username").toString(); %>
+        
+        <!--
             String fpath=null;
-            String inameedit = iname.replaceAll("\\s+","");
+            String inameedit = uname.replaceAll("\\s+","");
             DbConnection con = new DbConnection();    
-    String sql = "SELECT img FROM menuitem WHERE itemname='"+iname+"';";
+    String sql = "SELECT photo FROM post WHERE user_id='"+uname+"';";
     try{
     ResultSet rs = con.executeSelect(sql);
     fpath = "D:\\IPv1\\web\\images\\fooditems\\"+inameedit+".jpg";
@@ -51,9 +52,9 @@
          ;}
     
     
-    %>
+    -->
     
-    <img src="images/fooditems/<%= inameedit %>.jpg" height="100px" width="100px">
+    <!--img src="images/fooditems/<!-- inameedit % .jpg" height="100px" width="100px"-->
     
     </body>
 </html>
