@@ -3,6 +3,8 @@
     Created on : Apr 17, 2018, 5:26:41 PM
     Author     : Shenal Menuka
 --%>
+<%@page import="java.sql.Blob"%>
+<%@page import="mypckg.Img"%>
 <%@page import="mypckg.DbConnection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -122,7 +124,33 @@
     
     
     <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
-
+<%
+ 
+            Img i=null;
+        String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id,date_time FROM post;";
+        ResultSet rspost = con.executeSelect(sqpost);
+        String userId1="";int it;
+        
+        while(rspost.next()){
+        Blob img = rspost.getBlob(1);
+            int taskId = rspost.getInt(2);
+        String postName = rspost.getString(3);
+        String postDesc = rspost.getString(4);       
+        String userId = rspost.getString(5);
+        String postId = rspost.getString(6);
+        String postdt = rspost.getString(7);
+        
+        try{
+        i =new Img();
+        i.getImg(postId,img);
+        }catch(Exception e){System.out.println(e.getMessage());}
+        %>
+        <div style="border:solid black 3px">
+        <h3><%= userId %></h3><h4><%= postName %></h4><h6><%= postdt %></h6>            
+        <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
+        <h5><%=taskId%></h5><h5><%=postDesc%></h5>
+        </div>
+        <%}%>
         
         
         

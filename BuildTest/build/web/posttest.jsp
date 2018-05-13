@@ -20,7 +20,7 @@
         <%
           DbConnection con = new DbConnection(); 
             Img i=null;
-        String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id FROM post;";
+        String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id,date_time FROM post;";
         ResultSet rspost = con.executeSelect(sqpost);
         String userId1="";int it;
         
@@ -32,12 +32,14 @@
         String userId = rspost.getString(5);
         String postId = rspost.getString(6);
         
+        
         try{
         i =new Img();
         i.getImg(postId,img);
         }catch(Exception e){System.out.println(e.getMessage());}
         %>
-                    <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
+                  
+            <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
 
         <%}%>
     </body>

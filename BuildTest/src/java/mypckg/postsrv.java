@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -91,18 +92,20 @@ public class postsrv extends HttpServlet {
         String postname = request.getParameter("postname");
         String userid = request.getParameter("userId");
         String desc = request.getParameter("description");
+        String postdt =LocalDateTime.now().toString(); 
         
         
         DbConnection con = new DbConnection();
         try {
             Connection conn = con.connect();
             System.out.println(userid);
-            PreparedStatement pstmnt = conn.prepareStatement("INSERT INTO post(Photo,task_id,name,description,user_id) VALUES(?,?,?,?,?)");
+            PreparedStatement pstmnt = conn.prepareStatement("INSERT INTO post(Photo,task_id,name,description,user_id,date_time) VALUES(?,?,?,?,?,?)");
             pstmnt.setBlob(1, ips);
             pstmnt.setInt(2,taskId );
             pstmnt.setString(3, postname);
             pstmnt.setString(4, desc);
             pstmnt.setString(5, userid);
+            pstmnt.setString(6, postdt);
             
             int rcode = pstmnt.executeUpdate();
             if(rcode==0){
