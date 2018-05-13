@@ -138,7 +138,7 @@ public class LoginServlet extends HttpServlet {
                     {
                         project = Integer.parseInt(u.getProjectRole(u.getBusinessRole(),u.getBusinessID()));
                         s.setAttribute("userID", u.getBusinessID());
-                        s.setAttribute("projectRole", u.getProjectRole(u.getBusinessRole(),u.getBusinessID()));
+                        s.setAttribute("projectRole", u.getBusinessRole());
                         if(project >= 1)
                         {
                            response.sendRedirect("project_list.jsp");    
@@ -154,12 +154,10 @@ public class LoginServlet extends HttpServlet {
                         {                           
                             s.setAttribute("userID", u.getProjectSupplyID());                           
                             response.sendRedirect("project_list.jsp");                              
-                        }
-                
+                        }                
                 
                 s.setAttribute("usergroup", usergroup);
-                       
-                
+                                      
                 u.getBusinessID();
                 u.getBusinessRole();
                                                                             
