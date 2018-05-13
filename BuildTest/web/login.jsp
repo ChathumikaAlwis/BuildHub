@@ -30,17 +30,35 @@
                     </div>     
 
                     <div style="padding-top:30px" class="panel-body" >
-
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
+     
                         <form id="loginform" action="LoginServlet" method="post" class="form-horizontal" role="form">
-                            <h2> <%=request.getAttribute("status") %> </h2>
-                            <fieldset id="group1">
-                            <input type="radio" id="customer-Radio" name="group1" value="Customer"> <h3> Customer </h3>
-                            <input type="radio" id="business-Radio" name="group1" value="BusinessUser"> <h3> Business User </h3>
-                            <input type="radio" id="supplier-Radio" name="group1" value="Supplier"> <h3> Supplier </h3>
                             
-                            </fieldset>
+                            <div class="row col-sm-12 text-center">
+                                <fieldset id="group1">
+                                <div class="col-sm-4 ">
+                                    <label class="radio-inline">
+                                    <input type="radio" id="customer-Radio" name="group1" value="Customer">Customer 
+                                    </label>
+                                </div>
+                                <div class="col-sm-4 ">
+                                    <label class="radio-inline">
+                                    <input type="radio" id="business-Radio" name="group1" value="BusinessUser">Business User
+                                    </label>
+                                </div>
+                                <div class="col-sm-4 ">
+                                    <label class="radio-inline">
+                                    <input type="radio" id="supplier-Radio" name="group1" value="Supplier">Supplier  
+                                    </label>
+                                </div>
+                                </fieldset>
+                            </div>
+                            
+                            <br/><br/><br/>
+                            <div class="col-sm-12">
+                                <% String status = (String)request.getAttribute("status");
+                                    if(status!=null){%>
+                                        <h5 class="text-danger"><%= status %></h5>  <%}%>
+                            </div>    
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                                       
                                         <input id="login-username" type="text" class="form-control" name="Email" value="" placeholder="email" required>                                        
