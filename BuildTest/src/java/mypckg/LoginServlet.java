@@ -151,8 +151,7 @@ public class LoginServlet extends HttpServlet {
                     }
                     else
                         if(usergroup.equals("Supplier"))
-                        {
-                            project = Integer.parseInt(u.getProjects(u.getID()));
+                        {                           
                             s.setAttribute("userID", u.getProjectSupplyID());                           
                             response.sendRedirect("project_list.jsp");                              
                         }
