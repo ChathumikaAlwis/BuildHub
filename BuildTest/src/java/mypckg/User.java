@@ -309,9 +309,11 @@ public class User {
           
     public String getProjects(String ownerId) throws SQLException, ClassNotFoundException{       
     DbConnection con = new DbConnection();    
+  
     String sql = "SELECT COUNT(Owner) FROM project WHERE Owner='"+ownerId+"'";
+    
     ResultSet rs = con.executeSelect(sql);
-        System.out.println("");
+    System.out.println("");
     rs.next();
     String r = rs.getString(1);  
     return r;
@@ -320,10 +322,20 @@ public class User {
     public String getID() throws SQLException, ClassNotFoundException{       
     DbConnection con = new DbConnection();    
     String sql = "SELECT ID FROM customer WHERE email='"+username+"'";
-    ResultSet rs = con.executeSelect(sql);
-        System.out.println("");
+    ResultSet rs = con.executeSelect(sql);   
     rs.next();
     String r = rs.getString(1);  
+    System.out.println(r + "cusID");
+    return r;
+    }
+    
+    public String getBusinessID() throws SQLException, ClassNotFoundException{       
+    DbConnection con = new DbConnection();    
+    String sql = "SELECT ID FROM business_user WHERE email='"+username+"'";
+    ResultSet rs = con.executeSelect(sql);
+    rs.next();
+    String r = rs.getString(1);  
+    System.out.println(r + "BUID");
     return r;
     }
 }

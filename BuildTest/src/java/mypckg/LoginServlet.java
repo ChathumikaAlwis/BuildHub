@@ -115,7 +115,7 @@ public class LoginServlet extends HttpServlet {
                                 
                 if(project >= 1)
                 {
-                   response.sendRedirect("project.jsp");    
+                   response.sendRedirect("project_list.jsp");    
                 }
                 else
                     if(project == 0)
