@@ -28,7 +28,7 @@
             
     
       #contain {
-    max-width: 750px; 
+    max-width: 750px;} 
         </style>
     </head>
     <body>

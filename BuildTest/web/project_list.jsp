@@ -12,9 +12,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
+        <style>
+            #contain {
+    max-width: 750px; }
+            </style>
     </head>
     <body>
-        <h1>Project List</h1>
+        <jsp:include page="header.jsp"/>
+        
+        
+        <div class="container" id="contain" style="margin-top:120px;margin-bottom: 40px; color: #1B85D8">
+	<div class="col-lg-12 well">
+            <h1 style="font-family: 'Contrail One', cursive;" class="text-center">Project List</h1>
         <%
             /* Sessions
             username    ---> email
@@ -52,8 +65,27 @@
             String pId = r.getString(3);
         %>
         
-            <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-            <p><%= status %></p> 
+           
+            
+            <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
 
         <% }
          }
@@ -82,8 +114,25 @@
                     String status   = r2.getString(2);
                     String pId      = r2.getString(3);
                 %>
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                    <p><%= status %></p> 
+                     <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
                 <%  }
                 }
                 else
@@ -109,8 +158,25 @@
                         String status   = r2.getString(2);
                         String pId      = r2.getString(3);
                     %>
-                        <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                        <p><%= status %></p> 
+                         <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
                     <%  }
                     }
                     else
@@ -136,8 +202,25 @@
                             String status   = r2.getString(2);
                             String pId      = r2.getString(3);
                         %>
-                            <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                            <p><%= status %></p> 
+                             <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
                         <%  }
                         }
                         else
@@ -163,8 +246,25 @@
                                 String status   = r2.getString(2);
                                 String pId      = r2.getString(3);
                             %>
-                                <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                                <p><%= status %></p> 
+                                 <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
                             <%  }
                             }
                             else
@@ -190,8 +290,25 @@
                                     String status   = r2.getString(2);
                                     String pId      = r2.getString(3);
                                 %>
-                                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                                    <p><%= status %></p> 
+                                     <div class="row col-sm-12">
+                <div class="col-sm-5 text-center">
+                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
+                </div>
+                <div class="col-sm-5 text-center">
+                    
+                    <%if(status.equals("ongoing"))
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
+                <%}
+                else
+                {%>
+                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
+                <%}%>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                </div>
+            </div>
                                 <%  }
                                 }
               
@@ -202,7 +319,9 @@
                 response.sendRedirect("login.jsp");
             } 
         %>       
-         
+        </div>
+        </div>
+        <jsp:include page="footer.html"/>
         
     </body>
 </html>
