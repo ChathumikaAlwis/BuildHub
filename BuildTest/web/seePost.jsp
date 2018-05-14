@@ -21,7 +21,9 @@
 // select taskID from tasks where 
 // Select post from post where taskID = 
 DbConnection con = new DbConnection();
- String postID = request.getParameter("postid");System.out.println(postID+"pstid");
+            String oid = (String) session.getAttribute("userID");
+
+String postID = request.getParameter("postid");System.out.println(postID+"pstid");
             Img i=null;
         String sqpost = "SELECT Photo,task_id,name,description,user_id,project_id,date_time FROM post where post_id="+postID+";";
         
@@ -62,10 +64,19 @@ String posttaskname="n/a";
         <h5>Under Task :<%=posttaskname%></h5><h5>Description :<%=postDesc%></h5>
         <img style="" src="images/post/<%= postID %>.jpg" width="250px" height="250px">
         </div>
+        
+        
         <div id="psotcmnt" style="border:solid black 3px">
-        <form action="cmntServlet" method="post" >
+        <!--String status=(String)request.getAttribute("status");
+          if(Integer.parseInt(status)==-1){ status="unsuccessful!"; }  
+        if(status!=null){ %>
+        <p><= status%></p> <}% -->
+            <form action="cmntServlet" method="post" >
             <textarea style="width:19%;resize: none" name="cmntcontent" rows="4" cols="20">
             </textarea>
+            <input type="hidden" name="postId" value="<%=postID%>">
+            <%System.out.println(postID+"asdsdadasd");  %>
+            <input type="hidden" name="userId" value="<%=oid%>"><%System.out.println("oiddddddddddd   "+oid);%>
                 <input type="submit" value="Post" name="post" class="btn-success"  />
         </form>
         </div>
