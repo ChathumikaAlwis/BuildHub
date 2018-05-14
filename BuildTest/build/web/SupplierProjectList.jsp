@@ -11,33 +11,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
         <title>JSP Page</title>
-        <style>
-            #contain {
-    max-width: 750px; }
-            </style>
     </head>
     <body>
-        <jsp:include page="header.jsp"/>
+        <h1>Project List</h1>
         
-        
-        <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
-	<div class="col-lg-12 well">
-        <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Supplier List/Thread</h2>
-        <br/><br/>
-            <ul class="nav nav-pills nav-justified">
-    <li class="active"><a data-toggle="pill" href="#projectlist">Project List</a></li>
-    <li><a data-toggle="pill" href="#threads">Threads</a></li>
-  </ul>
-     <br/>       
-            <div class="tab-content">
-                
-       <div id="projectlist" class="tab-pane fade in active">
-       
        <%           
             /*
                     1.List Of projects  
@@ -73,34 +51,11 @@
                 String status   = r.getString(2);
                 String pId      = r.getString(3);
         %>
-        <div class="row col-sm-12">
-                <div class="col-sm-5 text-center">
-                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
-                </div>
-                <div class="col-sm-5 text-center">
-                    
-                    <%if(status.equalsIgnoreCase("ongoing"))
-                {%>
-                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
-                <%}
-                else
-                {%>
-                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
-                <%}%>
-                </div>
-                <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
-                </div>
-            </div>    
-        <%  }%>
-        
-        </div>
-        
-        
-        <div id="threads" class="tab-pane fade">
-      
-    
-        <%
+        <div>   
+                <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
+                <p><%= status %></p>
+        </div>      
+        <%  }
            
             ResultSet r2 = con.executeSelect(sql3);
             while(r2.next())
@@ -113,20 +68,10 @@
                 String tstatus       = r2.getString(6);
                 
         %>
-
-        <div class="row col-sm-12">
-                <div class="col-sm-4 text-center">
-                    <h4 style="font-family: 'Contrail One', cursive;" >Thread Name: </h4>  
-                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= ttitle %></p>
-                </div>
-                <div class="col-sm-6 text-center">
-                   <h4 style="font-family: 'Contrail One', cursive;" >Description: </h4>  
-                   <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
-                </div>
-                <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
-                </div>
-            </div> 
+        <div>   
+                <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>"><%= ttitle %></a>   
+                <p><%= tdescription %></p>
+        </div>      
         <%  }
         }
             catch(Exception e)
@@ -134,11 +79,8 @@
                 response.sendRedirect("login.jsp");
             }                    
         %>
-        </div>
-            </div>
-        </div>
-        </div>
+        
                 
-        <jsp:include page="footer.html"/>
+        
     </body>
 </html>
