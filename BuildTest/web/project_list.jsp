@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-sm-5 text-center">
                     
-                    <%if(status.equals("ongoing"))
+                    <%if(status.equals("ONGOING"))
                 {%>
                       <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
                 <%}
@@ -120,7 +120,7 @@
                 </div>
                 <div class="col-sm-5 text-center">
                     
-                    <%if(status.equals("ongoing"))
+                    <%if(status.equals("ONGOING"))
                 {%>
                       <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
                 <%}
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-sm-5 text-center">
                     
-                    <%if(status.equals("ongoing"))
+                    <%if(status.equals("ONGOING"))
                 {%>
                       <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
                 <%}
@@ -208,7 +208,7 @@
                 </div>
                 <div class="col-sm-5 text-center">
                     
-                    <%if(status.equals("ongoing"))
+                    <%if(status.equals("ONGOING"))
                 {%>
                       <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
                 <%}
@@ -252,7 +252,7 @@
                 </div>
                 <div class="col-sm-5 text-center">
                     
-                    <%if(status.equals("ongoing"))
+                    <%if(status.equals("ONGOING"))
                 {%>
                       <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
                 <%}
