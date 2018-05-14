@@ -69,7 +69,7 @@
                 
         %>
         <div>   
-                <a href="<%=request.getContextPath()%>/supplierThreads.jsp?pid=<%= tthreadID%>"><%= ttitle %></a>   
+                <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>"><%= ttitle %></a>   
                 <p><%= tdescription %></p>
         </div>      
         <%  }
