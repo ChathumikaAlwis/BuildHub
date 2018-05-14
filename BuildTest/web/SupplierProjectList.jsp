@@ -51,10 +51,9 @@
                 String status   = r.getString(2);
                 String pId      = r.getString(3);
         %>
-        
                 <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
-                <p><%= status %></p> 
-
+                <p><%= status %></p>
+                
         <%  }
                    
         }
