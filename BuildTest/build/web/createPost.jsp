@@ -20,33 +20,33 @@
             try{ResultSet rstsk = conn.executeSelect(sqltsk);
             %>
             
-            <select name="taskI"><%
+            <select name="taskId"><%
                 while(rstsk.next()){
                     //System.out.println(rs.getString(2));
                 %>
                   <option value="<%=rstsk.getString(1)%>"><%=rstsk.getString(2)%></option><%}%> 
             </select>
-            <input type="hidden" name="taskId" value="1">
             <input type="hidden" name="userId" value="<%=oid%>">
             <%
             rstsk.close();
-            } catch(Exception e){System.out.println(e.getMessage()+"eeeeee");}
+            } catch(Exception e){System.out.println(e.getMessage()+"eeeeee");} %>
 
-            String sqlprj="select id,name from project where status='ongoing' and owner="+oid+";";
-            try{ResultSet rsprj = conn.executeSelect(sqlprj); %>
-            
-            <select name="projId"><%
-                while(rsprj.next()){
-                    //System.out.println(rs.getString(2));
-                %>
-                  <option value="<%=rsprj.getString(1)%>"><%=rsprj.getString(2)%></option><%}%> 
-            </select>
-            <%
-            rsprj.close();
-            conn.close();
-            } catch(Exception e){System.out.println(e.getMessage()+"eeeeee");}
+            <input type="hidden" name="projid" value="<%=pid%>">
+       <!--     String sqlprj="select id,name from project where status='ongoing' and owner="+oid+";";
+//            try{ResultSet rsprj = conn.executeSelect(sqlprj); 
+//            
+//            <select name="projId"><!--
+//                while(rsprj.next()){
+//                    //System.out.println(rs.getString(2));
+//                %>
+//                  <option value="<!--=rsprj.getString(1)%>"><!--rsprj.getString(2)%></option><}%> 
+//            </select>
+//            <
+//            rsprj.close();
+//            conn.close();
+//            } catch(Exception e){System.out.println(e.getMessage()+"eeeeee");}
 
-            %>
+            -->
             Post Name : <input name="postname" type="text"  value="" size="10" />
             Description : <input name="description" type="text"  value="" size="10" />
             

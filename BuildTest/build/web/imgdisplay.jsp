@@ -20,8 +20,11 @@
     <body>
         
         <h1><%= request.getAttribute("msg") %></h1>
-        <% String uname=request.getAttribute("username").toString(); %>
-        
+        <% String uname=request.getAttribute("username").toString();
+        String pId=request.getAttribute("projId").toString();
+        %>
+                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>">Back</a>   
+
         <!--
             String fpath=null;
             String inameedit = uname.replaceAll("\\s+","");

@@ -124,7 +124,11 @@
     
     
     <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
-<%      
+        <div id="crtnwpost" style="border: black solid 2px">
+            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" style="color:black" >Create New Post+</a>
+         </div>
+        <div id="viewpost">
+        <%      
 // select taskID from tasks where 
 // Select post from post where taskID = 
  
@@ -161,18 +165,14 @@ String posttaskname="n/a";
         }catch(Exception e){System.out.println(e.getMessage()+"img");}
         %>
         <div style="border:solid black 3px">
-        <h3><%= postuname %></h3><h4><%= postName %></h4><h6><%= postdt %></h6>            
+        <h3><%= postName %></h3><p>OP :<%= postuname %></p><p style="text-align:  right;color: #888">Posted Time :<%= postdt %></p>            
         <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
-        <h5><%=posttaskname%></h5><h5><%=postDesc%></h5>
+
         <a style="color:white" href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>">See full post>></a>
         </div>
         <%}%>
         
-        
-        
-        
-        <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
     </div>
     
     
