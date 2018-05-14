@@ -275,7 +275,7 @@ public class User {
                 try{
                 rs = con.executeSelect(sql);
                 }
-                catch(Exception e){return e.getMessage();}
+                catch(ClassNotFoundException | SQLException e){return e.getMessage();}
                 rs.next();
                 r= rs.getString(1);
             }
