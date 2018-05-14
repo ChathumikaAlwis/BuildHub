@@ -37,8 +37,8 @@
             
             String ProjID = null;
             String sql1 = "SELECT Project_ID FROM proj_sup WHERE Supplier_ID = "+ oid + ";";
-
-
+            String sql3 = "SELECT * from thread";          
+            
             ResultSet r1 = con.executeSelect(sql1);
             r1.next();
             ProjID = r1.getString(1);
@@ -51,19 +51,36 @@
                 String status   = r.getString(2);
                 String pId      = r.getString(3);
         %>
+        <div>   
                 <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>"><%= pname %></a>   
                 <p><%= status %></p>
-                
+        </div>      
         <%  }
-                   
+           
+            ResultSet r2 = con.executeSelect(sql3);
+            while(r2.next())
+            {
+                String tthreadID     = r2.getString(1);
+                String tprojectID    = r2.getString(2);
+                String tdateTime     = r2.getString(3);
+                String tdescription  = r2.getString(4);
+                String ttitle        = r2.getString(5);
+                String tstatus       = r2.getString(6);
+                
+        %>
+        <div>   
+                <a href="<%=request.getContextPath()%>/supplierThreads.jsp?pid=<%= tthreadID%>"><%= ttitle %></a>   
+                <p><%= tdescription %></p>
+        </div>      
+        <%  }
         }
-        catch(Exception e)
-        {
-            response.sendRedirect("login.jsp");
-        } 
-          
+            catch(Exception e)
+            {
+                response.sendRedirect("login.jsp");
+            }                    
         %>
         
+                
         
     </body>
 </html>
