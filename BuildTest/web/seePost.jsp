@@ -16,7 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-           <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
+           <div id="post" class="tab-pane fade" style="background-color: #d2d1d1">
 <%      
 // select taskID from tasks where 
 // Select post from post where taskID = 
@@ -56,12 +56,20 @@ String posttaskname="n/a";
         i.getImg(postID,img);
         }catch(Exception e){System.out.println(e.getMessage()+"img");}
         %>
-        <div style="border:solid black 3px">
+          
+        <div id="postvw" style="border:solid black 3px">
         <h3>Posted By :<%= postuname %></h3><h4>Post Name :<%= postName %></h4><h6>Post Date :<%= postdt %></h6>            
         <h5>Under Task :<%=posttaskname%></h5><h5>Description :<%=postDesc%></h5>
         <img style="" src="images/post/<%= postID %>.jpg" width="250px" height="250px">
         </div>
-        
+        <div id="psotcmnt" style="border:solid black 3px">
+        <form action="cmntServlet" method="post" >
+            <textarea style="width:19%;resize: none" name="cmntcontent" rows="4" cols="20">
+            </textarea>
+                <input type="submit" value="Post" name="post" class="btn-success"  />
+        </form>
+        </div>
+         </div>
 <%
         }catch(Exception e){System.out.println(e.getMessage());}%>
     </body>
