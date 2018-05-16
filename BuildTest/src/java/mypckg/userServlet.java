@@ -203,7 +203,7 @@ public class userServlet extends HttpServlet {
             request.setAttribute("status", "Account Created!");
             s.setAttribute("username", email);
             System.out.println(status);
-            RequestDispatcher rd = request.getRequestDispatcher("create_project.jsp");    
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");    
             rd.forward(request, response);        } 
         
         else if(Integer.parseInt(status)==-153)
