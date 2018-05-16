@@ -18,6 +18,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
     </head>
     <body>
         <jsp:include page="header.html"/>
@@ -123,11 +124,15 @@
     </div>
     
     
-    <div id="post" class="tab-pane fade" style="">
-        <div id="crtnwpost" style="border: black solid 2px">
-            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" style="color:black" >Create New Post+</a>
-         </div>
-        <div id="viewpost">
+    <div id="post" class="tab-pane fade">
+        
+        <div class="container-fluid">
+        
+        <div class="col-sm-3">
+            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Post</a>
+        </div>
+        <br/><br/>
+        
         <%      
 // select taskID from tasks where 
 // Select post from post where taskID = 
@@ -137,7 +142,9 @@
         ResultSet rspost = con.executeSelect(sqpost);
         String userId1="";int it;
         
+        int a=0;
         while(rspost.next()){
+        a++;    
         Blob img = rspost.getBlob(1);
             int taskId = rspost.getInt(2);System.out.println(taskId+"ssssssss");
         String postName = rspost.getString(3);
@@ -164,13 +171,38 @@ String posttaskname="n/a";
         i.getImg(postId,img);
         }catch(Exception e){System.out.println(e.getMessage()+"img");}
         %>
-        <div style="border:solid black 3px">
-        <h3><%= postName %></h3><p>OP :<%= postuname %></p><p style="text-align:  right;color: #888">Posted Time :<%= postdt %></p>            
-        <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
-
-        <a style="color:black" href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>">See full post>></a>
+        
+        <%if(a%4==1)
+         {%>
+             <div class="row col-sm-12" style="margin-bottom: 10px">
+         <%}
+        %>
+        
+        
+        <div class="col-sm-3" style="margin-bottom: 10px;">
+            <div class="thumbnail text-center">
+           <h2 style="font-family: 'Contrail One', cursive; color: #1B85D8"><%= postName %></h2>            
+           <h4 style="font-family: 'Contrail One', cursive;">OP :<%= postuname %></h4>
+           <img style="" src="images/post/<%= postId %>.jpg">
+           <br/>
+           <h4 style="font-family: 'Contrail One', cursive; color:#000">Posted Time :<%= postdt %></h4>
+            <a href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>" class="btn btn-primary text-center" role="button">See full post</a>
+            </div>
         </div>
+        
+            <%if(a%4==0)
+         {%>
+             </div>
+         <%}
+        %>
+        
         <%}%>
+        
+         <%if(a%4 != 0)
+         {%>
+             </div>
+         <%}
+        %>
         
         </div>
     </div>
@@ -243,8 +275,6 @@ try{
         <img src="images/customer.png" alt="customer" style="width:100%">
         <div class="caption">
             <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Customer</h6>  
-            <%if(cusname.equals("n/a")){%><p>asad</p><%}%>
-            
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= cusname %></h3>
         </div>
     </div>
@@ -255,9 +285,17 @@ try{
         <div class="caption">
             <form action="searchMemberSrvlt" method="POST">
                 <input type="hidden" name="memtype" value="contr">
+                <ibnput type="hidden" name="projid" value="<%=projid%>">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Contractor</h6>   
-          <%if(contname.equals("n/a")){%><input type="text" name="searchq" value="Enter email...." size="30" />
-          <input type="submit" value="Search" name="srchbtn" />
+          <%if(contname.equalsIgnoreCase("n/a")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control">   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
           <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= contname %></h3>
           <%}%>
