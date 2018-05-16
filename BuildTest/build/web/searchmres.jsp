@@ -11,10 +11,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
         <title>JSP Page</title>
+         <style>
+            #contain {
+    max-width: 700px; }
+            </style>
     </head>
     <body>
-        
+        <jsp:include page="header.jsp"/> 
         <% 
         DbConnection con = new DbConnection();
         String memtype= (String) request.getAttribute("memtype");
@@ -35,22 +43,44 @@
             String userrole = rsusname.getString(7);
             String userdescription = rsusname.getString(8);      
         %>
-        <form action="addmem" method="POST">
-        <div style="border: solid black 1px">
-        <p>Name: <%=userfname%> <%=userlname%></p>
-        <p>Contact: <%=usercontact%></p>
-        <p>Address: <%=useraddress%></p>
-        <p>Description: <%=userdescription%></p>
-        <p>Occupation: <%=userrole%></p>
-        <p>Last Login: <%=userlastlogin%></p>
         
-        <input type="hidden" name="memtype" value="<%= memtype %>">
+        
+         <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
+	<div class="col-lg-12 well"> 
+            <form action="addmem" method="POST">
+              <h4 style="font-family: 'Contrail One', cursive;" class="text-right">Last Login: <%=userlastlogin%></h4>  
+              <div >   
+                  <img src="images/profile.png" alt="profile" class="thumbnail" style="  margin: 0 auto; ">
+              </div>
+              <h2 style="font-family: 'Contrail One', cursive;" class="text-center"><%=userfname%> <%=userlname%></h2>  
+               <div class="row">
+                   <div class="col-sm-6">
+                       <h4 style="font-family: 'Contrail One', cursive;" class="text-center">Contact: <%=usercontact%></h4>
+                   </div> 
+                   <div class="col-sm-6">
+                       <h4 style="font-family: 'Contrail One', cursive;" class="text-center">Occupation: <%=userrole%></h4>
+                   </div> 
+               </div>
+               <div class="row">
+                   <div class="col-sm-6">
+                       <h4 style="font-family: 'Contrail One', cursive;" class="text-center">Address: <%=useraddress%></h4>
+                   </div> 
+                   <div class="col-sm-6">
+                       <h4 style="font-family: 'Contrail One', cursive;" class="text-center">Description: <%=userdescription%></h4>
+                   </div> 
+               </div> 
+                   
+                   <input type="hidden" name="memtype" value="<%= memtype %>">
         <input type="hidden" name="userId" value="<%= userid %>">
         <input type="hidden" name="projid" value="<%= projid %>"><%System.out.println(projid);%>
-        <input type="submit" value="Add" name="addbtn" /></div>
-        </form>
+        <input type="submit" value="Add" class="btn btn-primary" name="addbtn" />
+                
+            </form>
+            
+        </div>
+         </div>
             <% }
         %>
-
+        <jsp:include page="footer.html"/> 
     </body>
 </html>
