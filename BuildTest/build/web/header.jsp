@@ -48,17 +48,26 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="homepage.html">BuildHub.com</a>
+      <a class="navbar-brand" href="homepage.jsp">BuildHub.com</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-left">
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#services">FEATURES</a></li>
+        <% if(session.getAttribute("username")!=null) {%>
+        <li><a href="project_list.jsp">Projects</a></li><%}%>
       </ul>
-        <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right">
+        <% if(session.getAttribute("username")==null) {%>  
+      
         <li><a href="registerUser.jsp">REGISTER</a></li>
         <li><a href="login.jsp">LOGIN</a></li>
-      </ul>
+      <%}
+        else{   %>
+                <li><a href="logout.jsp" style="color:#fff"><%= session.getAttribute("username") %></a></li>  <%
+        } 
+        %>
+    </ul>
     </div>
   </div>
 </nav>
