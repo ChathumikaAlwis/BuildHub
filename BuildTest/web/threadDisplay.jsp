@@ -56,8 +56,7 @@
             rs3.next();
             contact = rs3.getString(1); 
             fName = rs3.getString(1); 
-            lName = rs3.getString(1); 
-            
+            lName = rs3.getString(1);            
         }
         catch(Exception e)
         {
@@ -65,8 +64,9 @@
         }
 %>       <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
 	<div class="col-lg-12 well">
-                    <form action="" method="POST">
-                            <div class="text-right"><input class="btn btn-primary" type="submit" value="Close Thread"></div>
+                    <form action="RemoveThread" method="POST">
+                        <input type="hidden" name="tid" value="<%=request.getParameter("tid")%>">
+                    <div class="text-right"><input class="btn btn-primary" type="submit" value="Close Thread"></div>
                     </form>
                 <h5 style="font-family: 'Contrail One', cursive; color:#000" class="text-right"> Time Created : <%= dateTime%> </h5>
                  <h1 style="font-family: 'Contrail One', cursive;" class="text-center"><%= title %></h1>

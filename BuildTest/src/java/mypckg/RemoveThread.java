@@ -8,8 +8,6 @@ package mypckg;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -24,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author RavianXReaver
  */
-@WebServlet(name = "CreateThread", urlPatterns = {"/CreateThread"})
-public class CreateThread extends HttpServlet {
+@WebServlet(name = "RemoveThread", urlPatterns = {"/RemoveThread"})
+public class RemoveThread extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +42,10 @@ public class CreateThread extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateThread</title>");            
+            out.println("<title>Servlet RemoveThread</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateThread at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveThread at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -79,20 +77,18 @@ public class CreateThread extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-         HttpSession s = request.getSession(true);
-         DbConnection con = new DbConnection();
-         String uID = (String)s.getAttribute("userID");
-         String userGroup = (String)s.getAttribute("usergroup");
-         String pID = (String)s.getAttribute("pid");
-         String title = request.getParameter("title");
-         String description = request.getParameter("description");
-         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-         LocalDateTime now = LocalDateTime.now();  
-         String sql = "INSERT INTO thread(Project_ID, Date_Time, Description, Title, Status) VALUES("+pID+",'"+dateTime.format(now)+"','"+description+"','"+title+"','0')";                                       
-         RequestDispatcher rd;
-         try {
-            con.execInsert(sql);
+        
+        String tid = request.getParameter("tid");
+        DbConnection con = new DbConnection();
+        System.out.println(tid + " THREAD ID");
+        String sql = "UPDATE thread SET Status= 0 WHERE Thread_ID ="+tid;
+        RequestDispatcher rd;
+        HttpSession s = request.getSession(true);
+        String userGroup = (String)s.getAttribute("usergroup");
+        String pID = (String)s.getAttribute("pid");
+        try 
+        {
+            con.execUpdate(sql);
             if(userGroup.equals("Customer"))
             {
                 rd = request.getRequestDispatcher("/project.jsp?pid="+ pID); 
@@ -103,13 +99,11 @@ public class CreateThread extends HttpServlet {
                 rd = request.getRequestDispatcher("/project_BU.jsp?pid="+ pID);
                 rd.forward(request, response);
             }
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CreateThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
+        } 
+        catch (SQLException | ClassNotFoundException ex) 
+        {
+            Logger.getLogger(RemoveThread.class.getName()).log(Level.SEVERE, null, ex);
+        }            
     }
 
     /**
