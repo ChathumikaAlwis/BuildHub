@@ -25,8 +25,9 @@
         
         <% 
             String projid = request.getParameter("pid");
+            HttpSession ss = request.getSession(true);
             String oid = (String) session.getAttribute("userID");
-
+            ss.setAttribute("pid", projid);
                 
 //--------------------------------------------------------                
         DbConnection con = new DbConnection(); 
@@ -235,14 +236,14 @@
         <div class="row col-sm-12">
                 <div class="col-sm-4 text-center">
                     <h4 style="font-family: 'Contrail One', cursive;" >Thread Name: </h4>  
-                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= ttitle %></p>
+                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= ttitle %></p>                
                 </div>
                 <div class="col-sm-6 text-center">
                    <h4 style="font-family: 'Contrail One', cursive;" >Description: </h4>  
                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Thread</a>
+                    <a href="<%=request.getContextPath()%>/threadDisplay.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Thread</a>
                 </div>
             </div> 
         <%  }

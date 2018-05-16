@@ -7,11 +7,17 @@ package mypckg;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +78,29 @@ public class CreateThread extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+         HttpSession s = request.getSession(true);
+         DbConnection con = new DbConnection();
+         String uID = (String)s.getAttribute("userID");
+         String userGroup = (String)s.getAttribute("usergroup");
+         String pID = (String)s.getAttribute("pid");
+         String title = request.getParameter("title");
+         String description = request.getParameter("description");
+         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+         LocalDateTime now = LocalDateTime.now();  
+         String sql = "INSERT INTO thread(Project_ID, Date_Time, Description, Title, Status) VALUES("+pID+",'"+dateTime.format(now)+"','"+description+"','"+title+"','0')";                                       
+        try {
+            con.execInsert(sql);
+            if(userGroup.equals("Customer"))
+            response.sendRedirect("project.jsp"); 
+            else
+            response.sendRedirect("project_BU.jsp");
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CreateThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
     }
 
     /**

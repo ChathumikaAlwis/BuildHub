@@ -26,7 +26,7 @@
         <div class="container" id="contain" style="margin-top:120px;margin-bottom: 60px; color: #1B85D8">
 	<div class="col-lg-12 well">
             
-            <form name="createThread" action="" method="POST">
+            <form name="createThread" action="CreateThread" method="POST">
                <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Create Thread</h2>
                
                 <div class="form-group">
