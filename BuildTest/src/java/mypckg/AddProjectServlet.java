@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -94,13 +95,14 @@ public class AddProjectServlet extends HttpServlet {
         try 
         {
             Connection conn = con.connect();
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
             ResultSet rs2 = ps.getGeneratedKeys();
             rs2.next();
             pid = rs2.getInt(1);
             System.out.println("Project Created!");
             String sqliw = "INSERT INTO project_workers(project_id,cus_id) VALUES("+pid+","+uid+");";
+            System.out.println("Project ID : "+ pid);
             con.execInsert(sqliw);          
             response.sendRedirect("project_list.jsp");   
         } 
