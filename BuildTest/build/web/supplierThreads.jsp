@@ -67,26 +67,23 @@
             System.out.println(e.getMessage());
         }
 %>       <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
-	<div class="col-lg-12 well">      
+	<div class="col-lg-12 well">
+                <h5 style="font-family: 'Contrail One', cursive; color:#000" class="text-right"> Time Created : <%= dateTime%> </h5>
                  <h1 style="font-family: 'Contrail One', cursive;" class="text-center"><%= title %></h1>
                 <br>
-                <div class="row">
-                    <div class="col-sm-8 text-center">
+                    <div class="col-sm-12 text-center">
                       <h3 style="font-family: 'Contrail One', cursive;"> <%= description%> </h3>  
                     </div> 
-                    <div class="col-sm-4 text-center">
-                        <div>
+                    <div class="row text-center">
+                        <div class="col-sm-6 text-center">
                           <h4 style="font-family: 'Contrail One', cursive; color:#000"> Posted By : <%= fName%> <%= lName%></h4>  
                         </div>
-                        <div>
+                        <div class="col-sm-6 text-center">
                          <h4 style="font-family: 'Contrail One', cursive; color:#000"> Contact   : <%= contact%>  </h4>    
                         </div>
-                    </div>
-                </div>    
+                    </div>    
                 <br/> 
-                <div class="text-center">
-                <h4 style="font-family: 'Contrail One', cursive; color:#000"> Time Created : <%= dateTime%> </h4>
-                </div>
+                
         </div>
         </div>
         <jsp:include page="footer.html"/>        
