@@ -132,8 +132,11 @@ String posttaskname="n/a";
                 <div style="background-color: #FDFDFD;border-left: 6px solid #1B85D8; padding: 20px; margin-bottom: 15px; box-shadow: 5px 5px 5px #E1E1E1;">
                     
                     <div>
-                            <h6 style="font-family: 'Contrail One', cursive;" class="text-left">User <%=cmntername%> says:</h6>
-                            <h6 style="font-family: 'Contrail One', cursive;" class="text-left">Posted on: <%=cmntdt%></h6>
+                            <h6 style="font-family: 'Contrail One', cursive;" class="text-right">Posted on: <%=cmntdt%></h6>
+                        </div>
+           
+                    <div>
+                            <h5 style="font-family: 'Contrail One', cursive;" class="text-left">User <%=cmntername%> says:</h5>
                         </div>
                         <div>
                         <h4 style="font-family: 'Contrail One', cursive;" class="text-center"><%=commcontent%></h4>
