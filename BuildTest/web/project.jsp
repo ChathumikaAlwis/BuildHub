@@ -307,8 +307,24 @@ try{
     <div class="thumbnail">
         <img src="images/architect.jpg" alt="architect" style="width:100%">
         <div class="caption">
-            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Architecture</h6> 
+            <form action="searchMemberSrvlt" method="POST">
+                <input type="hidden" name="memtype" value="archi">
+                <input type="hidden" name="projid" value="<%=projid%>">
+                <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Architecture</h6> 
+          <%if(archiname.equalsIgnoreCase("n/a")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= archiname %></h3>
+          <%}%>
+                
+        </form>
         </div>
     </div>
   </div>
@@ -316,8 +332,25 @@ try{
     <div class="thumbnail">
         <img src="images/intdesigner.png" alt="interiordesigner" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="intdes">
+                <input type="hidden" name="projid" value="<%=projid%>">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Interior Designer</h6>   
+          <%if(intdesname.equalsIgnoreCase("n/a")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= intdesname %></h3>
+          <%}%>
+          
+
+        </form>
         </div>
     </div>
   </div>      
@@ -329,8 +362,25 @@ try{
     <div class="thumbnail">
         <img src="images/qsurvey.png" alt="quantitysurveyer" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="qsurv">
+                <input type="hidden" name="projid" value="<%=projid%>">
            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Quantity Surveyer</h6>  
+          <%if(qsurvname.equalsIgnoreCase("n/a")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= qsurvname %></h3>
+          <%}%>
+
+           
+        </form>
         </div>
     </div>
   </div>
@@ -338,8 +388,26 @@ try{
     <div class="thumbnail">
         <img src="images/carpenter.png" alt="carpenter" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="carp">
+                <input type="hidden" name="projid" value="<%=projid%>">
             <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Carpenter</h6> 
+          <%if(carpname.equalsIgnoreCase("n/a")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= carpname %></h3>
+          <%}%>
+
+            
+            
+        </form>
         </div>
     </div>
   </div>
