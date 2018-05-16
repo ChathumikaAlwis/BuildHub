@@ -420,7 +420,7 @@ try{
     
     
     <div id="task" class="tab-pane fade">
-        
+        <a href="<%=request.getContextPath()%>/createtask.jsp?pid=<%= projid %>">Add New Task+</a>
         <table class="table table-hover">
     <thead>
       <tr>
@@ -432,6 +432,7 @@ try{
         <th>Estimated End Date</th>
         <th>Task Description</th>
         <th>Task Moderator</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -468,6 +469,7 @@ rstmod.next(); String modlnm = rstmod.getString(2);
         <td><%= teed %></td>
         <td><%= tdesc %></td>
         <td><%= modlnm %></td>
+        <td><a href="#">Edit</a></td>
       </tr>
     
     <% 
