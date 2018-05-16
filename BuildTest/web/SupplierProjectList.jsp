@@ -27,80 +27,22 @@
         
         <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
 	<div class="col-lg-12 well">
-        <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Project List/Thread</h2>
+        <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Threads</h2>
         <br/><br/>
             <ul class="nav nav-pills nav-justified">
-    <li class="active"><a data-toggle="pill" href="#projectlist">Project List</a></li>
-    <li><a data-toggle="pill" href="#threads">Threads</a></li>
+    <li class="active"><a data-toggle="pill" href="#threads">Threads</a></li>
   </ul>
      <br/>       
             <div class="tab-content">
-                
-       <div id="projectlist" class="tab-pane fade in active">
-       
-       <%           
-            /*
-                    1.List Of projects  
-                    2.Show all Threads                         
-           
-            //Sessions          
-            username    ---> email
-            usergroup   --->(Customer || BusinessUser || Supplier)
-            userID      ---> Based on usergroup
-            projectRole ---> BusinessUser - Role
-            */
-            
-        DbConnection con    = new DbConnection();    
-        String oid = (String) session.getAttribute("userID");
-        
-        try
-        {                                                              
-            System.out.println("Project_List = oid " +oid );                               
-            
-            String ProjID = null;
-            String sql1 = "SELECT Project_ID FROM proj_sup WHERE Supplier_ID = "+ oid + ";";
-            String sql3 = "SELECT * from thread";          
-            
-            ResultSet r1 = con.executeSelect(sql1);
-            r1.next();
-            ProjID = r1.getString(1);
-            String sql = "SELECT name,status,id FROM project WHERE ID="+ ProjID +";";
-            ResultSet r = con.executeSelect(sql);
-            while(r.next())
-            {
-                String pname    = r.getString(1);
-                String status   = r.getString(2);
-                String pId      = r.getString(3);
-        %>
-        <div class="row col-sm-12">
-                <div class="col-sm-5 text-center">
-                    <h3 style="font-family: 'Contrail One', cursive;" >Project Name: <%=pname%></h3>  
-                </div>
-                <div class="col-sm-5 text-center">
-                    
-                    <%if(status.equalsIgnoreCase("ongoing"))
-                {%>
-                      <h3 style="font-family: 'Contrail One', cursive; color:red;" >Status: <%=status%></h3>  
-                <%}
-                else
-                {%>
-                      <h3 style="font-family: 'Contrail One', cursive; color:green;" >Status: <%=status%></h3>   
-                <%}%>
-                </div>
-                <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/projectOverview.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
-                </div>
-            </div>    
-        <%  }%>
-        
-        </div>
-        
-        
-        <div id="threads" class="tab-pane fade">
-      
+                             
+        <div id="threads" class="tab-pane fade in active">    
     
         <%
-           
+        DbConnection con    = new DbConnection();    
+        String oid = (String) session.getAttribute("userID");
+        try
+        {
+            String sql3 = "SELECT * from thread";   
             ResultSet r2 = con.executeSelect(sql3);
             while(r2.next())
             {
@@ -123,15 +65,16 @@
                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Threads</a>
                 </div>
             </div> 
         <%  }
-        }
-            catch(Exception e)
-            {
-                response.sendRedirect("login.jsp");
-            }                    
+        } 
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }  
+                  
         %>
         </div>
             </div>

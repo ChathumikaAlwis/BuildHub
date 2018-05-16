@@ -392,7 +392,7 @@ public class User {
     ResultSet rs = con.executeSelect(sql);   
     rs.next();
     String r = rs.getString(1);  
-    System.out.println(r + "cusID");
+    System.out.println(r + " Supplier");
     return r;
     }
 }

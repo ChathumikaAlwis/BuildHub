@@ -1,7 +1,7 @@
 <%-- 
     Document   : project
     Created on : Apr 17, 2018, 5:26:41 PM
-    Author     : Shenal Menuka
+    Author     : RavianXReaver, Chanaka, Chathumika
 --%>
 <%@page import="java.sql.Blob"%>
 <%@page import="mypckg.Img"%>
@@ -25,15 +25,15 @@
         
         <% 
             String projid = request.getParameter("pid");
-                String oid = (String) session.getAttribute("userID");
+            String oid = (String) session.getAttribute("userID");
 
                 
 //--------------------------------------------------------                
         DbConnection con = new DbConnection(); 
-            System.out.println(oid);
+        System.out.println(oid);
         String sqlov = "SELECT name,status,id,start_date,end_date,est_start,est_end,location_address,description FROM project WHERE owner="+ oid +" and id="+projid+";";
         ResultSet rsov = con.executeSelect(sqlov);
-       rsov.next();
+        rsov.next();
        
         String pname = rsov.getString(1);
         String status = rsov.getString(2);
@@ -137,7 +137,7 @@
 // select taskID from tasks where 
 // Select post from post where taskID = 
  
-            Img i=null;
+        Img i=null;
         String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id,date_time FROM post where project_id="+projid+";";
         ResultSet rspost = con.executeSelect(sqpost);
         String userId1="";int it;
@@ -146,24 +146,24 @@
         while(rspost.next()){
         a++;    
         Blob img = rspost.getBlob(1);
-            int taskId = rspost.getInt(2);System.out.println(taskId+"ssssssss");
+        int taskId = rspost.getInt(2);System.out.println(taskId+"ssssssss");
         String postName = rspost.getString(3);
         String postDesc = rspost.getString(4);       
         String userId = rspost.getString(5);
         String postId = rspost.getString(6);
         String postdt = rspost.getString(7);
-String postuname="n/a";
+        String postuname="n/a";
         try{
         String sqlpostuname = "SELECT fname,lname FROM customer WHERE id="+userId+";";
         ResultSet rspostuname = con.executeSelect(sqlpostuname);
         rspostuname.next(); postuname=rspostuname.getString(2);
-}catch(Exception e){System.out.println(e.getMessage()+"userid");}   
-String posttaskname="n/a";
+        }catch(Exception e){System.out.println(e.getMessage()+"userid");}   
+        String posttaskname="n/a";
         try{
         String sqltaskname = "SELECT name FROM task WHERE task_id="+taskId+";";System.out.println(taskId+"aaaaaaa");
         ResultSet rstaskname = con.executeSelect(sqltaskname);
         rstaskname.next(); posttaskname=rstaskname.getString(1);
-}catch(Exception e){System.out.println(e.getMessage()+"tskname");}  
+        }catch(Exception e){System.out.println(e.getMessage()+"tskname");}  
         
 
         try{
@@ -209,8 +209,50 @@ String posttaskname="n/a";
     
     
     <div id="thread" class="tab-pane fade" style="background-color: #0077e2">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+       <div id="projectlist" class="tab-pane fade in active">
+       <div class="col-sm-3">
+            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Thread</a>
+        </div>
+        <%                  
+        try
+        {                                                              
+            String sql3 = "SELECT * from thread WHERE Project_ID ="+projid;                      
+            ResultSet r1 = con.executeSelect(sql3);
+            r1.next();
+                                             
+            ResultSet r2 = con.executeSelect(sql3);
+            while(r2.next())
+            {
+                String tthreadID     = r2.getString(1);
+                String tprojectID    = r2.getString(2);
+                String tdateTime     = r2.getString(3);
+                String tdescription  = r2.getString(4);
+                String ttitle        = r2.getString(5);
+                String tstatus       = r2.getString(6);
+                
+        %>
+
+        <div class="row col-sm-12">
+                <div class="col-sm-4 text-center">
+                    <h4 style="font-family: 'Contrail One', cursive;" >Thread Name: </h4>  
+                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= ttitle %></p>
+                </div>
+                <div class="col-sm-6 text-center">
+                   <h4 style="font-family: 'Contrail One', cursive;" >Description: </h4>  
+                   <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Thread</a>
+                </div>
+            </div> 
+        <%  }
+        }
+            catch(Exception e)
+            {
+                response.sendRedirect("login.jsp");
+            }                    
+        %>
+        </div>
     </div>
     
     
