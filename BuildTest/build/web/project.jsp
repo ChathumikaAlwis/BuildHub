@@ -211,7 +211,7 @@
     <div id="thread" class="tab-pane fade" style="background-color: #0077e2">
        <div id="projectlist" class="tab-pane fade in active">
        <div class="col-sm-3">
-            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Thread</a>
+            <a href="<%=request.getContextPath()%>/createThread.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Thread</a>
         </div>
         <%                  
         try

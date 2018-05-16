@@ -30,7 +30,7 @@
         <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Threads</h2>
         <br/>     
             <div class="tab-content">
-            <hr>                     
+            <hr style="height:3px">                     
         <div id="threads" class="tab-pane fade in active">    
     
         <%
