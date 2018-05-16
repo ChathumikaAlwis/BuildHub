@@ -23,8 +23,8 @@
         <jsp:include page="header.html"/>
         
         <% 
-            /*userID      ---> Based on usergroup
-            projectRole ---> BusinessUser - Role*/
+            /*userID        ---> Based on usergroup
+            projectRole     ---> BusinessUser - Role*/
             
             HttpSession s = request.getSession(true);
             String projid = request.getParameter("pid");
@@ -101,7 +101,7 @@
     </script>
             <br/><br/><br/>
             
-  <div class="tab-content">
+ <div class="tab-content">
     
     <div id="overview" class="tab-pane fade in active">
               
@@ -166,21 +166,27 @@
     </div>
     
     
-    <div id="post" class="tab-pane fade" style="">
-        <div id="crtnwpost" style="border: black solid 2px">
-            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" style="color:black" >Create New Post+</a>
-         </div>
-        <div id="viewpost">
+    <div id="post" class="tab-pane fade">
+        
+        <div class="container-fluid">
+        
+        <div class="col-sm-3">
+            <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Post</a>
+        </div>
+        <br/><br/>
+        
         <%      
 // select taskID from tasks where 
 // Select post from post where taskID = 
  
-        Img i=null;
+            Img i=null;
         String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id,date_time FROM post where project_id="+projid+";";
         ResultSet rspost = con.executeSelect(sqpost);
         String userId1="";int it;
         
+        int a=0;
         while(rspost.next()){
+        a++;    
         Blob img = rspost.getBlob(1);
             int taskId = rspost.getInt(2);System.out.println(taskId+"ssssssss");
         String postName = rspost.getString(3);
@@ -188,7 +194,7 @@
         String userId = rspost.getString(5);
         String postId = rspost.getString(6);
         String postdt = rspost.getString(7);
-        String postuname="n/a";
+String postuname="n/a";
         try{
         String sqlpostuname = "SELECT fname,lname FROM customer WHERE id="+userId+";";
         ResultSet rspostuname = con.executeSelect(sqlpostuname);
@@ -207,13 +213,38 @@ String posttaskname="n/a";
         i.getImg(postId,img);
         }catch(Exception e){System.out.println(e.getMessage()+"img");}
         %>
-        <div style="border:solid black 3px">
-        <h3><%= postName %></h3><p>OP :<%= postuname %></p><p style="text-align:  right;color: #888">Posted Time :<%= postdt %></p>            
-        <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
-
-        <a style="color:black" href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>">See full post>></a>
+        
+        <%if(a%4==1)
+         {%>
+             <div class="row col-sm-12" style="margin-bottom: 10px">
+         <%}
+        %>
+        
+        
+        <div class="col-sm-3" style="margin-bottom: 10px;">
+            <div class="thumbnail text-center">
+           <h2 style="font-family: 'Contrail One', cursive; color: #1B85D8"><%= postName %></h2>            
+           <h4 style="font-family: 'Contrail One', cursive;">OP :<%= postuname %></h4>
+           <img style="" src="images/post/<%= postId %>.jpg">
+           <br/>
+           <h5 style="font-family: 'Contrail One', cursive; color:#000">Posted Time :<%= postdt %></h5>
+            <a href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>" class="btn btn-primary text-center" role="button">See full post</a>
+            </div>
         </div>
+        
+            <%if(a%4==0)
+         {%>
+             </div>
+         <%}
+        %>
+        
         <%}%>
+        
+         <%if(a%4 != 0)
+         {%>
+             </div>
+         <%}
+        %>
         
         </div>
     </div>
@@ -225,12 +256,12 @@ String posttaskname="n/a";
     </div>
     
     
-    <div id="member" name="memberstab" class="tab-pane fade">
+    <div id="member" class="tab-pane fade">
                <%    
         String cusid=null,contractid=null,archid=null,intdesid=null,qsurvid=null,carpid=null;
         String cusname="n/a",contname="n/a",archiname="n/a",intdesname="n/a",qsurvname="n/a",carpname="n/a";           
         String sqlmb = "SELECT * FROM project_workers WHERE project_id="+projid+";";
-        
+        try{
         ResultSet rsmb = con.executeSelect(sqlmb);
        
         rsmb.next();
@@ -241,7 +272,7 @@ String posttaskname="n/a";
         intdesid = rsmb.getString(5);
         qsurvid = rsmb.getString(6);
         carpid = rsmb.getString(7);
-            
+        }catch(Exception e){System.out.println(e.getMessage());}
         try{
         String sqlcusname = "SELECT fname,lname FROM customer WHERE id="+cusid+";";
         ResultSet rscusname = con.executeSelect(sqlcusname);
@@ -286,8 +317,6 @@ try{
         <img src="images/customer.png" alt="customer" style="width:100%">
         <div class="caption">
             <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Customer</h6>  
-            <%if(cusname.equals("n/a")){%><p>asad</p><%}%>
-            
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= cusname %></h3>
         </div>
     </div>
@@ -298,9 +327,17 @@ try{
         <div class="caption">
             <form action="searchMemberSrvlt" method="POST">
                 <input type="hidden" name="memtype" value="contr">
+                <input type="hidden" name="projid" value="<%=projid%>">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Contractor</h6>   
-          <%if(contname.equals("n/a")){%><input type="text" name="searchq" value="Enter email...." size="30" />
-          <input type="submit" value="Search" name="srchbtn" />
+          <%if(contname.equalsIgnoreCase("n/a") && role.equals("Contractor")){%>         
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>                
           <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= contname %></h3>
           <%}%>
@@ -312,8 +349,24 @@ try{
     <div class="thumbnail">
         <img src="images/architect.jpg" alt="architect" style="width:100%">
         <div class="caption">
-            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Architecture</h6> 
+            <form action="searchMemberSrvlt" method="POST">
+                <input type="hidden" name="memtype" value="archi">
+                <input type="hidden" name="projid" value="<%=projid%>">
+                <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Architecture</h6> 
+          <%if(archiname.equalsIgnoreCase("n/a") && role.equals("Contractor")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= archiname %></h3>
+          <%}%>
+                
+        </form>
         </div>
     </div>
   </div>
@@ -321,8 +374,25 @@ try{
     <div class="thumbnail">
         <img src="images/intdesigner.png" alt="interiordesigner" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="intdes">
+                <input type="hidden" name="projid" value="<%=projid%>">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Interior Designer</h6>   
+          <%if(intdesname.equalsIgnoreCase("n/a") && role.equals("Contractor")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= intdesname %></h3>
+          <%}%>
+          
+
+        </form>
         </div>
     </div>
   </div>      
@@ -334,8 +404,25 @@ try{
     <div class="thumbnail">
         <img src="images/qsurvey.png" alt="quantitysurveyer" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="qsurv">
+                <input type="hidden" name="projid" value="<%=projid%>">
            <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Quantity Surveyer</h6>  
+          <%if(qsurvname.equalsIgnoreCase("n/a") && role.equals("Contractor")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= qsurvname %></h3>
+          <%}%>
+
+           
+        </form>
         </div>
     </div>
   </div>
@@ -343,8 +430,26 @@ try{
     <div class="thumbnail">
         <img src="images/carpenter.png" alt="carpenter" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                                <input type="hidden" name="memtype" value="carp">
+                <input type="hidden" name="projid" value="<%=projid%>">
             <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Carpenter</h6> 
+          <%if(carpname.equalsIgnoreCase("n/a") && role.equals("Contractor")){%>
+          <div class="row">
+              <div class="col-sm-8">
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
+              </div>
+              <div class="col-sm-4">        
+          <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
+              </div>
+          </div>
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= carpname %></h3>
+          <%}%>
+
+            
+            
+        </form>
         </div>
     </div>
   </div>
@@ -357,7 +462,7 @@ try{
     
     
     <div id="task" class="tab-pane fade">
-        
+        <a href="<%=request.getContextPath()%>/createtask.jsp?pid=<%= projid %>">Add New Task+</a>
         <table class="table table-hover">
     <thead>
       <tr>
@@ -369,12 +474,14 @@ try{
         <th>Estimated End Date</th>
         <th>Task Description</th>
         <th>Task Moderator</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
                <%    
         
         String sqltk = "SELECT name,status,start_date,end_date,est_start,est_end,description,moderator_id FROM task WHERE project_id="+projid+";";
+       try{
         ResultSet rstk = con.executeSelect(sqltk);
        
         while(rstk.next())
@@ -388,7 +495,7 @@ try{
         String tdesc = rstk.getString(7);
         String tmodid = rstk.getString(8);
 
-       try{     
+            
         String sqltmod = "SELECT fname,lname FROM business_user WHERE id="+tmodid+";";
         ResultSet rstmod = con.executeSelect(sqltmod);
 rstmod.next(); String modlnm = rstmod.getString(2);
@@ -404,9 +511,12 @@ rstmod.next(); String modlnm = rstmod.getString(2);
         <td><%= teed %></td>
         <td><%= tdesc %></td>
         <td><%= modlnm %></td>
+        <td><a href="#">Edit</a></td>
       </tr>
     
-    <%}catch(Exception e){System.out.println(e.getMessage()+"modert");} }%>
+    <% 
+
+}   }catch(Exception e){System.out.println(e.getMessage()+"modert");}%>
     
     </tbody>
   </table>
@@ -419,6 +529,5 @@ rstmod.next(); String modlnm = rstmod.getString(2);
         <jsp:include page="footer.html"/>
     </body>
 </html>
-
 
 
