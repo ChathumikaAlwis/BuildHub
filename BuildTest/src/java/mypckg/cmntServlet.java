@@ -45,7 +45,7 @@ public class cmntServlet extends HttpServlet {
             out.println("<title>Servlet cmntServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet cmntServlet at " + request.getContextPath() + "</h1>");
+            out.println("<a href=project_list.jsp>Go Back </a>");
             out.println("</body>");
             out.println("</html>");
         }
