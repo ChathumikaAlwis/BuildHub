@@ -11,10 +11,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
         <title>JSP Page</title>
+        <style>
+            #contain {
+    max-width: 700px; }
+            </style>
     </head>
     <body>
-         <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
+        <jsp:include page="header.jsp"/> 
 <%      
         DbConnection con    = new DbConnection();
         String tid          = request.getParameter("tid");System.out.println(tid+" tid");
@@ -58,16 +66,29 @@
         {
             System.out.println(e.getMessage());
         }
-%>             
-
-                <h1> <%= title %> </h1>
+%>       <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
+	<div class="col-lg-12 well">      
+                 <h1 style="font-family: 'Contrail One', cursive;" class="text-center"><%= title %></h1>
                 <br>
-                <p> <%= description%> </p>
-                <br>
-                <p> Posted By : <%= fName%> <%= lName%> <br>
-                    Contact   : <%= contact%>
-                </p>                              
-                <h5> Time Created : <%= dateTime%> </h5>
-                
+                <div class="row">
+                    <div class="col-sm-8 text-center">
+                      <h3 style="font-family: 'Contrail One', cursive;"> <%= description%> </h3>  
+                    </div> 
+                    <div class="col-sm-4 text-center">
+                        <div>
+                          <h4 style="font-family: 'Contrail One', cursive; color:#000"> Posted By : <%= fName%> <%= lName%></h4>  
+                        </div>
+                        <div>
+                         <h4 style="font-family: 'Contrail One', cursive; color:#000"> Contact   : <%= contact%>  </h4>    
+                        </div>
+                    </div>
+                </div>    
+                <br/> 
+                <div class="text-center">
+                <h4 style="font-family: 'Contrail One', cursive; color:#000"> Time Created : <%= dateTime%> </h4>
+                </div>
+        </div>
+        </div>
+        <jsp:include page="footer.html"/>        
     </body>
 </html>
