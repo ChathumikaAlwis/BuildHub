@@ -22,14 +22,18 @@
             </style>
     </head>
     <body>
+        
         <jsp:include page="header.jsp"/> 
-        <% 
+        <div class="container" style="margin-top :100px; color: #1B85D8">
+        <%
+        int a=0;    
         DbConnection con = new DbConnection();
         String memtype= (String) request.getAttribute("memtype");
         String projid= (String) request.getAttribute("projid");System.out.println(projid);
         ResultSet srchres = (ResultSet)request.getAttribute("serachres") ;
         while(srchres.next())
         {
+            a++;
             String res = srchres.getString(1);
             String sqlusname = "SELECT fname,lname,id,Contact_No,Address,Last_Login,Role,Description FROM business_user WHERE id="+res+";";
             ResultSet rsusname = con.executeSelect(sqlusname);
@@ -44,10 +48,17 @@
             String userdescription = rsusname.getString(8);      
         %>
         
+        <%if(a%3==1)
+         {%>
+             <div class="row col-sm-12" style="margin-bottom: 10px">
+         <%}
+        %>
         
-         <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
-	<div class="col-lg-12 well"> 
-            <form action="addmem" method="POST">
+        
+        <div class="col-sm-4" style="margin-bottom: 10px;">
+                
+            <div style="box-shadow: 2px 5px 5px 5px #E1E1E1;  padding-top: 10px">
+                 <form action="addmem" method="POST">
               <h4 style="font-family: 'Contrail One', cursive;" class="text-right">Last Login: <%=userlastlogin%></h4>  
               <div >   
                   <img src="images/profile.png" alt="profile" class="thumbnail" style="  margin: 0 auto; ">
@@ -73,14 +84,32 @@
                    <input type="hidden" name="memtype" value="<%= memtype %>">
         <input type="hidden" name="userId" value="<%= userid %>">
         <input type="hidden" name="projid" value="<%= projid %>"><%System.out.println(projid);%>
-        <input type="submit" value="Add" class="btn btn-primary" name="addbtn" />
-                
+        <div class="text-center">
+        <input type="submit" value="Add User" class="btn btn-primary" name="addbtn" />
+        </div>  
+        <br/>
             </form>
-            
+           </div>
+        
         </div>
-         </div><hr>
+        
+            <%if(a%3==0)
+         {%>
+             </div>
+         <%}
+        %>
+        
+       
             <% }
         %>
+        
+         <%if(a%3 != 0)
+         {%>
+             </div>
+         <%}
+        %>
+        
+        </div>
         <jsp:include page="footer.html"/> 
     </body>
 </html>
