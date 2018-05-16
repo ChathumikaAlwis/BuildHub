@@ -123,7 +123,7 @@
     </div>
     
     
-    <div id="post" class="tab-pane fade" style="background-color: #ef1a1a">
+    <div id="post" class="tab-pane fade" style="">
         <div id="crtnwpost" style="border: black solid 2px">
             <a href="<%=request.getContextPath()%>/createPost.jsp?pid=<%= projid%>" style="color:black" >Create New Post+</a>
          </div>
@@ -147,7 +147,7 @@
         String postdt = rspost.getString(7);
 String postuname="n/a";
         try{
-        String sqlpostuname = "SELECT fname,lname FROM business_user WHERE id="+userId+";";
+        String sqlpostuname = "SELECT fname,lname FROM customer WHERE id="+userId+";";
         ResultSet rspostuname = con.executeSelect(sqlpostuname);
         rspostuname.next(); postuname=rspostuname.getString(2);
 }catch(Exception e){System.out.println(e.getMessage()+"userid");}   
@@ -168,7 +168,7 @@ String posttaskname="n/a";
         <h3><%= postName %></h3><p>OP :<%= postuname %></p><p style="text-align:  right;color: #888">Posted Time :<%= postdt %></p>            
         <img style="" src="images/post/<%= postId %>.jpg" width="150px" height="150px">
 
-        <a style="color:white" href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>">See full post>></a>
+        <a style="color:black" href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>">See full post>></a>
         </div>
         <%}%>
         
@@ -243,6 +243,8 @@ try{
         <img src="images/customer.png" alt="customer" style="width:100%">
         <div class="caption">
             <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Customer</h6>  
+            <%if(cusname.equals("n/a")){%><p>asad</p><%}%>
+            
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= cusname %></h3>
         </div>
     </div>
@@ -251,8 +253,15 @@ try{
     <div class="thumbnail">
         <img src="images/contractor.png" alt="contractor" style="width:100%">
         <div class="caption">
+            <form action="searchMemberSrvlt" method="POST">
+                <input type="hidden" name="memtype" value="contr">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Contractor</h6>   
+          <%if(contname.equals("n/a")){%><input type="text" name="searchq" value="Enter email...." size="30" />
+          <input type="submit" value="Search" name="srchbtn" />
+          <% } else{ %>
           <h3 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center"><%= contname %></h3>
+          <%}%>
+        `   </form>
         </div>
     </div>
   </div>

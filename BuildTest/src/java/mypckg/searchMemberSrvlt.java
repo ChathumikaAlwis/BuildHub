@@ -7,8 +7,8 @@ package mypckg;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Chath
  */
-@WebServlet(name = "cmntServlet", urlPatterns = {"/cmntServlet"})
-public class cmntServlet extends HttpServlet {
+@WebServlet(name = "searchMemberSrvlt", urlPatterns = {"/searchMemberSrvlt"})
+public class searchMemberSrvlt extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class cmntServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet cmntServlet</title>");            
+            out.println("<title>Servlet searchMemberSrvlt</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet cmntServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet searchMemberSrvlt at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,36 +77,25 @@ public class cmntServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DbConnection con = new DbConnection();
+        String srchq = request.getParameter("searchq");
+        String memtype = request.getParameter("memtype");
         
-        System.out.println("testttttttttttttt");
-            String cmnt = (String)request.getParameter("cmntcontent");
-            String userId = (String)request.getParameter("userId");System.out.println(userId+"uid");
-            String postId = (String)request.getParameter("postId");System.out.println(cmnt+"cmnttttt");
-            String postdt =LocalDateTime.now().toString(); System.out.println(postId+"pid");
+        if(memtype.equals("contr")){
+            try {
+                String sqlcontr = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";
+                ResultSet rscontrsrch = con.executeSelect(sqlcontr);
 
-            
-            try{
-                DbConnection con = new DbConnection();    
-    String sql = "INSERT INTO comments(post_id,content,user_id,date_time) VALUES("+postId+",'"+cmnt+"',"+userId+",'"+postdt+"');";
-    String r = con.execInsert(sql);
-        System.out.println(r+"blaaaaa");
-    if(Integer.parseInt(r)>0){
-                request.setAttribute("status", 1);
-                System.out.println();
-            RequestDispatcher rd = request.getRequestDispatcher("/seePost.jsp?postid="+ postId);
+                request.setAttribute("serachres", rscontrsrch );
+            RequestDispatcher rd = request.getRequestDispatcher("searchmres.jsp");
              rd.forward(request, response);
-
-    }
-    else{
-                request.setAttribute("status", -1);
-            RequestDispatcher rd = request.getRequestDispatcher("/seePost.jsp?postid="+ postId);
-             rd.forward(request, response);
-    }
+            } catch (SQLException ex) {
+                Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(cmntServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(Exception e){System.out.println(e.getMessage());}
-
     }
 
     /**
