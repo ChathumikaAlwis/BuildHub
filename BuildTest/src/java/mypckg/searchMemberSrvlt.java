@@ -85,7 +85,7 @@ public class searchMemberSrvlt extends HttpServlet {
             try {
                 String sqlcontr = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";
                 ResultSet rscontrsrch = con.executeSelect(sqlcontr);
-
+            request.setAttribute("memtype", memtype );
                 request.setAttribute("serachres", rscontrsrch );
             RequestDispatcher rd = request.getRequestDispatcher("searchmres.jsp");
              rd.forward(request, response);

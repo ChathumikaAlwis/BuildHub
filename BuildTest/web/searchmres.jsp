@@ -17,7 +17,8 @@
         
         <%  String srchid="";
         DbConnection con = new DbConnection();
-            ResultSet srchres = (ResultSet) request.getAttribute("serachres") ;
+        String memtype= (String) request.getAttribute("memtype");
+        ResultSet srchres = (ResultSet) request.getAttribute("serachres") ;
         while(srchres.next()){
             String res = srchres.getString(1);
                     String sqlusname = "SELECT fname,lname,id FROM business_user WHERE id="+res+";";
@@ -28,11 +29,16 @@
         String userid = rsusname.getString(3);
        
         %>
-        <div style="border: solid black 1px"><p><%=userfname%></p>
+        <form action="" post="addMemSrvlt">
+        <div style="border: solid black 1px">
+         <p><%=memtype%></p>
+         <p><%=userfname%></p>
         <p><%=userlname%></p>
-        <p><%=userid%></p></div>
-        
-        <% }
+        <p><%=userid%></p>
+        <input type="hidden" name="memtype" value="<%= memtype %>">
+        <input type="submit" value="Add" name="addbtn" /></div>
+        </form>
+            <% }
         %>
 
     </body>
