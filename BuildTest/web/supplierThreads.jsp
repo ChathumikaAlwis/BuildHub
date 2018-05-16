@@ -70,10 +70,11 @@
 	<div class="col-lg-12 well">
                 <h5 style="font-family: 'Contrail One', cursive; color:#000" class="text-right"> Time Created : <%= dateTime%> </h5>
                  <h1 style="font-family: 'Contrail One', cursive;" class="text-center"><%= title %></h1>
-                <br>
+                <br/>
                     <div class="col-sm-12 text-center">
                       <h3 style="font-family: 'Contrail One', cursive;"> <%= description%> </h3>  
                     </div> 
+                    <br/><br/>
                     <div class="row text-center">
                         <div class="col-sm-6 text-center">
                           <h4 style="font-family: 'Contrail One', cursive; color:#000"> Posted By : <%= fName%> <%= lName%></h4>  

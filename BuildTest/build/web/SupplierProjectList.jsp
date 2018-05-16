@@ -123,14 +123,14 @@
                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Threads</a>
                 </div>
             </div> 
         <%  }
         }
             catch(Exception e)
             {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("null.jsp");
             }                    
         %>
         </div>
