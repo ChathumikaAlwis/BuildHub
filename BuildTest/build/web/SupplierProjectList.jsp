@@ -38,7 +38,7 @@
         String oid = (String) session.getAttribute("userID");
         try
         {
-            String sql3 = "SELECT * from thread";   
+            String sql3 = "SELECT * from thread WHERE Status=1";   
             ResultSet r2 = con.executeSelect(sql3);
             while(r2.next())
             {
