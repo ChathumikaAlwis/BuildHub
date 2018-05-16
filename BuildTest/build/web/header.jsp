@@ -55,7 +55,7 @@
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#services">FEATURES</a></li>
         <% if(session.getAttribute("username")!=null) {%>
-        <li><a href="project_list.jsp">Projects</a></li><%}%>
+        <li><a href="project_list.jsp">PROJECTS</a></li><%}%>
       </ul>
     <ul class="nav navbar-nav navbar-right">
         <% if(session.getAttribute("username")==null) {%>  
