@@ -21,19 +21,24 @@
 
  <style>     
 @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css");
+#contain {
+    max-width: 700px; }
   </style>
 
         <title>JSP Page</title>
     </head>
     <body>
+        
+         <jsp:include page="header.jsp"/> 
     <% DbConnection conn = new DbConnection();
             String pid = (String) request.getParameter("pid");
             String oid = (String) session.getAttribute("userID");          
 %>
-                   
+               <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
+	<div class="col-lg-12 well">    
             <form name="addTask" action="AddTaskServlet" method="POST">
                 <input type="hidden" name="pid" value="<%=pid%>">
-					<div class="col-sm-12">
+		
 						
 							<div class="col-sm-12 form-group">
 								<label>Task Name</label>
@@ -65,7 +70,7 @@
                                                                 <textarea name="description" placeholder="Enter Description Here.." rows="3" class="form-control" required></textarea>
                                                     </div>	
 						
-					          <div class="row">
+					     
                                                       
                         <% 
             String contrid = null;
@@ -123,31 +128,31 @@
         rscarpname.next(); if(rscarpname.getString(2)!=null){ carpname = (String)rscarpname.getString(2);}
         }catch(Exception e){}
                %>    
-           Select Moderator : <select name="modId">
-                <option value="<%=contrid%>"><%=contname%></option>
+            <div class="col-sm-12 form-group">
+			<label>Select Moderator</label>
+                     <select class="form-control" id="gender1" name="modId" required>
+                    <option value="<%=contrid%>"><%=contname%></option>
                   <option value="<%=archid%>"><%=archiname%></option>
                   <option value="<%=intdes%>"><%=intdesname%></option>
                   <option value="<%=qsurv%>"><%=qsurvname%></option>
                   <option value="<%=carp%>"><%=carpname%></option>
-            </select>                                          
+                  </select>   
+							</div>
                 <%}catch(Exception e){System.out.println(e.getMessage()+" carp"); System.out.println("from second");}
 %>                                  
-                                  
-                                  
-          </div>
 
                                             
-                                            
-                                            
-                                            <div class="col-sm-12">
-                                                  <button type="submit" class="btn btn-lg btn-primary" name="submit" id="submit" >Submit</button>					
-					
-                                            </div>
-                                      
+                <div class="col-sm-12">
+                      <button type="submit" class="btn btn-lg btn-primary" name="submit" id="submit" >Submit</button>					
+
+                </div>
+
                                              
-                                           </div>
-				</form> 
-       
+                                      
+				</form>
+                </div>
+               </div>
+        <jsp:include page="footer.html"/> 
     </body>
 </html>
  <script >
