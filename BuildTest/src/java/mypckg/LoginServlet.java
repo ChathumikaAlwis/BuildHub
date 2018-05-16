@@ -83,9 +83,12 @@ public class LoginServlet extends HttpServlet {
         String usergroup    = request.getParameter("group1");
         EncryptPw encrypt = new EncryptPw();
         encrypt.setPw(password);
-        try {
+        try 
+        {
             password = encrypt.enc();
-        } catch (NoSuchAlgorithmException ex) {
+        } 
+        catch (NoSuchAlgorithmException ex) 
+        {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
             PrintWriter out = response.getWriter();
@@ -155,8 +158,7 @@ public class LoginServlet extends HttpServlet {
                             s.setAttribute("userID", u.getProjectSupplyID());                           
                             response.sendRedirect("SupplierProjectList.jsp");                              
                         }                
-                
-                s.setAttribute("usergroup", usergroup);                                                                                                                                 
+                                                                                                                                              
             }
             else
             {

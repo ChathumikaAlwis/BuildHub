@@ -15,22 +15,53 @@
         <title>Project</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     </head>
     <body>
         <jsp:include page="header.html"/>
         
         <% 
+            /*userID      ---> Based on usergroup
+            projectRole ---> BusinessUser - Role*/
+            
+            HttpSession s = request.getSession(true);
             String projid = request.getParameter("pid");
-                String oid = (String) session.getAttribute("userID");
-
-                
+            String oid = (String) s.getAttribute("userID");
+            String role = (String) s.getAttribute("projectRole");
+            int settab = -1;
+            
+            if(role.equals("Contractor"))
+            {   
+                settab = 1;
+            }
+            else
+                if(role.equals("Architect"))
+                {
+                    settab = 0;
+                }
+                else
+                    if(role.equals("Interior Designer"))
+                    {
+                         settab = 0;
+                    }
+                    else
+                        if(role.equals("Quantity Surveyor"))
+                        {
+                             settab = 0;
+                        }
+                        else
+                            if(role.equals("Carpenter"))
+                            {
+                                 settab = 0;
+                            }
+                System.out.println("Role " +role);
+                System.out.println("settab " +settab);
 //--------------------------------------------------------                
         DbConnection con = new DbConnection(); 
-        System.out.println(oid);
-        String sqlov = "SELECT name,status,id,start_date,end_date,est_start,est_end,location_address,description FROM project WHERE owner="+ oid +" and id="+projid+";";
+        System.out.println(projid);
+        String sqlov = "SELECT name,status,id,start_date,end_date,est_start,est_end,location_address,description FROM project WHERE ID="+projid+";";
         ResultSet rsov = con.executeSelect(sqlov);
         rsov.next();
        
@@ -43,8 +74,7 @@
         String loc = rsov.getString(8);
         String desc = rsov.getString(9);
         %>        
-        
-        
+                           
         <div class="container-fluid" style="margin-top: 90px">
         <h1 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Project Name: <%=pname%></h1>
         <br/>
@@ -52,10 +82,20 @@
     <li class="active"><a data-toggle="pill" href="#overview">OVERVIEW</a></li>
     <li><a data-toggle="pill" href="#post">POSTS</a></li>
     <li><a data-toggle="pill" href="#thread">THREADS</a></li>
-    <li><a data-toggle="pill" href="#member">MEMBERS</a></li>
-    <li><a data-toggle="pill" href="#task">TASKS</a></li>
+    <li id="memberstab"><a data-toggle="pill" href="#member">MEMBERS</a></li>
+    <li id="taskstab"><a data-toggle="pill" href="#task">TASKS</a></li>
   </ul>
-  
+    <script>      
+        
+        var x =<%=settab%>; 
+        if(x === 0)
+        {
+            $("memberstab").hide();
+            $("taskstab").hide();
+        }
+        
+        
+    </script>
             <br/><br/><br/>
             
   <div class="tab-content">
@@ -132,7 +172,7 @@
 // select taskID from tasks where 
 // Select post from post where taskID = 
  
-            Img i=null;
+        Img i=null;
         String sqpost = "SELECT Photo,task_id,name,description,user_id,post_id,date_time FROM post where project_id="+projid+";";
         ResultSet rspost = con.executeSelect(sqpost);
         String userId1="";int it;
@@ -145,7 +185,7 @@
         String userId = rspost.getString(5);
         String postId = rspost.getString(6);
         String postdt = rspost.getString(7);
-String postuname="n/a";
+        String postuname="n/a";
         try{
         String sqlpostuname = "SELECT fname,lname FROM customer WHERE id="+userId+";";
         ResultSet rspostuname = con.executeSelect(sqlpostuname);
