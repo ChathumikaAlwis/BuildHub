@@ -90,6 +90,15 @@ public class addmem extends HttpServlet {
                 System.out.println("memtype-----------"+memtype); 
                 if(memtype.equals("contr")){
      sqlins = "UPDATE project_workers SET Contractor_Id="+userId+" WHERE Project_id="+projid+";";}
+                else if(memtype.equals("archi")){
+     sqlins = "UPDATE project_workers SET Architect_Id="+userId+" WHERE Project_id="+projid+";";}
+                else if(memtype.equals("intdes")){
+     sqlins = "UPDATE project_workers SET IntDesigner_Id="+userId+" WHERE Project_id="+projid+";";}
+                else if(memtype.equals("qsurv")){
+     sqlins = "UPDATE project_workers SET Quantity_surv_Id="+userId+" WHERE Project_id="+projid+";";}
+                else if(memtype.equals("carp")){
+     sqlins = "UPDATE project_workers SET Carpenter_Id="+userId+" WHERE Project_id="+projid+";";}
+                
     String r = con.execInsert(sqlins);
         System.out.println(r+"rrrrrrrrrrrrr");
     if(Integer.parseInt(r)>0){

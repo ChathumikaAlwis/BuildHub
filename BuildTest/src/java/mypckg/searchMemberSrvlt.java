@@ -81,22 +81,33 @@ public class searchMemberSrvlt extends HttpServlet {
         String srchq = request.getParameter("searchq");
         String memtype = request.getParameter("memtype");
         String projid = request.getParameter("projid");
-        
+        String sqlmembfind="";
         if(memtype.equals("contr")){
+           sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";}
+        else if(memtype.equals("archi")){
+        sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Architect'";}
+        else if(memtype.equals("intdes")){
+        sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Interior Designer'";}
+        else if(memtype.equals("qsurv")){
+        sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Quantity Surveyor'";}
+        else if(memtype.equals("carp")){
+        sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Carpenter'";}
+            
             try {
-                String sqlcontr = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";
-                ResultSet rscontrsrch = con.executeSelect(sqlcontr);
+                
+                ResultSet rscontrsrch = con.executeSelect(sqlmembfind);
             request.setAttribute("memtype", memtype );
                 request.setAttribute("serachres", rscontrsrch );
                 request.setAttribute("projid", projid );
             RequestDispatcher rd = request.getRequestDispatcher("searchmres.jsp");
              rd.forward(request, response);
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
         
     }
 
