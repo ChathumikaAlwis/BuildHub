@@ -20,7 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     </head>
     <body>
-        <jsp:include page="header.html"/>
+        <jsp:include page="header.jsp"/>
         
         <% 
             /*userID        ---> Based on usergroup
