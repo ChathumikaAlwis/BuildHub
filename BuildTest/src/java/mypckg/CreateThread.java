@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -89,12 +90,13 @@ public class CreateThread extends HttpServlet {
          DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
          LocalDateTime now = LocalDateTime.now();  
          String sql = "INSERT INTO thread(Project_ID, Date_Time, Description, Title, Status) VALUES("+pID+",'"+dateTime.format(now)+"','"+description+"','"+title+"','0')";                                       
-        try {
+         RequestDispatcher rd;
+         try {
             con.execInsert(sql);
             if(userGroup.equals("Customer"))
-            response.sendRedirect("project.jsp"); 
+            rd = request.getRequestDispatcher("/project.jsp?pid="+ pID); 
             else
-            response.sendRedirect("project_BU.jsp");
+            rd = request.getRequestDispatcher("/project_BU.jsp?pid="+ pID);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(CreateThread.class.getName()).log(Level.SEVERE, null, ex);
         }

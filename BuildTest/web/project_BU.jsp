@@ -251,8 +251,50 @@ String posttaskname="n/a";
     
     
     <div id="thread" class="tab-pane fade" style="background-color: #0077e2">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <div id="projectlist" class="tab-pane fade in active">
+       <div class="col-sm-3">
+            <a href="<%=request.getContextPath()%>/createThread.jsp?pid=<%= projid%>" class="btn btn-primary" role="button">Create New Thread</a>
+        </div>
+        <%                  
+        try
+        {                                                              
+            String sql3 = "SELECT * from thread WHERE Project_ID ="+projid;                      
+            ResultSet r1 = con.executeSelect(sql3);
+            r1.next();
+                                             
+            ResultSet r2 = con.executeSelect(sql3);
+            while(r2.next())
+            {
+                String tthreadID     = r2.getString(1);
+                String tprojectID    = r2.getString(2);
+                String tdateTime     = r2.getString(3);
+                String tdescription  = r2.getString(4);
+                String ttitle        = r2.getString(5);
+                String tstatus       = r2.getString(6);
+                
+        %>
+
+        <div class="row col-sm-12">
+                <div class="col-sm-4 text-center">
+                    <h4 style="font-family: 'Contrail One', cursive;" >Thread Name: </h4>  
+                    <p style="font-family: 'Contrail One', cursive; color:#000"><%= ttitle %></p>                
+                </div>
+                <div class="col-sm-6 text-center">
+                   <h4 style="font-family: 'Contrail One', cursive;" >Description: </h4>  
+                   <p style="font-family: 'Contrail One', cursive; color:#000"><%= tdescription %></p>
+                </div>
+                <div class="col-sm-2 text-center">      
+                    <a href="<%=request.getContextPath()%>/threadDisplay.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Thread</a>
+                </div>
+            </div> 
+        <%  }
+        }
+            catch(Exception e)
+            {
+                response.sendRedirect("login.jsp");
+            }                    
+        %>
+        </div>
     </div>
     
     
