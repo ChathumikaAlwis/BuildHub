@@ -82,11 +82,15 @@ public class AddProjectServlet extends HttpServlet {
         HttpSession s = request.getSession(true);
         
         String uid = s.getAttribute("userID").toString();
+        String pid = request.getParameter("pid");
+        System.out.println(pid+"  lll Project ID");
         AddProject ap = new AddProject(request.getParameter("pname"),(String)request.getParameter("StartDate"),(String)request.getParameter("EndDate"), (String)request.getParameter("location"), (String)request.getParameter("description"));
         System.out.println("UID: "+ uid);       
         String sql = "INSERT INTO project(Name,Owner,Start_Date,End_Date,Location_Address,Description) VALUES('"+ap.getName()+"',"+uid+",'"+ap.getStartDate()+"','"+ap.getEndDate()+"','"+ap.getLocationAddress()+"','"+ap.getDescription()+"')";
+        String sqliw = "INSERT INTO project_workers(project_id,cus_id) VALUES("+pid+","+uid+");";
         try {
             con.execInsert(sql);
+            con.execInsert(sqliw);
             System.out.println("Project Created!");
             response.sendRedirect("project_list.jsp");   
         } catch (SQLException | ClassNotFoundException ex) 

@@ -200,10 +200,10 @@ public class userServlet extends HttpServlet {
         if (Integer.parseInt(status)>0) {
             //start session
             HttpSession s = request.getSession(true);
-            request.setAttribute("status", "Inserted successfully!");
+            request.setAttribute("status", "Account Created!");
             s.setAttribute("username", email);
             System.out.println(status);
-            RequestDispatcher rd = request.getRequestDispatcher("project.jsp");    
+            RequestDispatcher rd = request.getRequestDispatcher("create_project.jsp");    
             rd.forward(request, response);        } 
         
         else if(Integer.parseInt(status)==-153)

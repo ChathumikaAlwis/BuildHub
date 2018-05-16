@@ -20,8 +20,6 @@ public class AddProject
     public AddProject(String name, String startDate, String endDate, String locationAddress, String description)
     {
         this.name               = name;
-        this.owner              = owner;
-        this.status             = status;
         this.startDate          = startDate;
         this.endDate            = endDate;
         this.locationAddress    = locationAddress;
