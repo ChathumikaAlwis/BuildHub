@@ -29,7 +29,7 @@
 	<div class="col-lg-12 well">
             <h1 style="font-family: 'Contrail One', cursive;" class="text-center">Project List</h1>
             
-            <a href="<%=request.getContextPath()%>/addProject.jsp">Create New Project+</a>
+            <a href="<%=request.getContextPath()%>/addProject.jsp" class="btn btn-primary">Create New Project</a>
         <%
             /* Sessions
             username    ---> email
