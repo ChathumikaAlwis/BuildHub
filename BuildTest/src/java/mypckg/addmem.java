@@ -81,14 +81,15 @@ public class addmem extends HttpServlet {
         
                    String memtype = (String)request.getParameter("memtype");
             String userId = (String)request.getParameter("userId");
-            String projid = (String)request.getParameter("projid");
+            String projid = request.getParameter("projid");System.out.println(projid);
             
 
     String sqlins="";        
             try{
                 DbConnection con = new DbConnection();
                 System.out.println("memtype-----------"+memtype); 
-                if(memtype.equals("contr")){
+                if(memtype.equals("contr")){System.out.println("contrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");   
+                    System.out.println(projid+"pid");System.out.println(userId+"user");
      sqlins = "UPDATE project_workers SET Contractor_Id="+userId+" WHERE Project_id="+projid+";";}
                 else if(memtype.equals("archi")){
      sqlins = "UPDATE project_workers SET Architect_Id="+userId+" WHERE Project_id="+projid+";";}

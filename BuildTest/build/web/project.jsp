@@ -219,7 +219,7 @@ String posttaskname="n/a";
         String cusid=null,contractid=null,archid=null,intdesid=null,qsurvid=null,carpid=null;
         String cusname="n/a",contname="n/a",archiname="n/a",intdesname="n/a",qsurvname="n/a",carpname="n/a";           
         String sqlmb = "SELECT * FROM project_workers WHERE project_id="+projid+";";
-        
+        try{
         ResultSet rsmb = con.executeSelect(sqlmb);
        
         rsmb.next();
@@ -230,7 +230,7 @@ String posttaskname="n/a";
         intdesid = rsmb.getString(5);
         qsurvid = rsmb.getString(6);
         carpid = rsmb.getString(7);
-            
+        }catch(Exception e){System.out.println(e.getMessage());}
         try{
         String sqlcusname = "SELECT fname,lname FROM customer WHERE id="+cusid+";";
         ResultSet rscusname = con.executeSelect(sqlcusname);
@@ -285,7 +285,7 @@ try{
         <div class="caption">
             <form action="searchMemberSrvlt" method="POST">
                 <input type="hidden" name="memtype" value="contr">
-                <ibnput type="hidden" name="projid" value="<%=projid%>">
+                <input type="hidden" name="projid" value="<%=projid%>">
           <h6 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Contractor</h6>   
           <%if(contname.equalsIgnoreCase("n/a")){%>
           <div class="row">
@@ -370,6 +370,7 @@ try{
                <%    
         
         String sqltk = "SELECT name,status,start_date,end_date,est_start,est_end,description,moderator_id FROM task WHERE project_id="+projid+";";
+       try{
         ResultSet rstk = con.executeSelect(sqltk);
        
         while(rstk.next())
@@ -383,7 +384,7 @@ try{
         String tdesc = rstk.getString(7);
         String tmodid = rstk.getString(8);
 
-       try{     
+            
         String sqltmod = "SELECT fname,lname FROM business_user WHERE id="+tmodid+";";
         ResultSet rstmod = con.executeSelect(sqltmod);
 rstmod.next(); String modlnm = rstmod.getString(2);
@@ -401,7 +402,9 @@ rstmod.next(); String modlnm = rstmod.getString(2);
         <td><%= modlnm %></td>
       </tr>
     
-    <%}catch(Exception e){System.out.println(e.getMessage()+"modert");} }%>
+    <% 
+
+}   }catch(Exception e){System.out.println(e.getMessage()+"modert");}%>
     
     </tbody>
   </table>

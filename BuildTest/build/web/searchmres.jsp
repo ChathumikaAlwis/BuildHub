@@ -18,7 +18,7 @@
         <%  String srchid="";
         DbConnection con = new DbConnection();
         String memtype= (String) request.getAttribute("memtype");
-        String projid= (String) request.getAttribute("projid");
+        String projid= (String) request.getAttribute("projid");System.out.println(projid);
         ResultSet srchres = (ResultSet) request.getAttribute("serachres") ;
         while(srchres.next()){
             String res = srchres.getString(1);
@@ -38,7 +38,7 @@
         <p><%=userid%></p>
         <input type="hidden" name="memtype" value="<%= memtype %>">
         <input type="hidden" name="userId" value="<%= userid %>">
-        <input type="hidden" name="projid" value="<%= projid %>">
+        <input type="hidden" name="projid" value="<%= projid %>"><%System.out.println(projid);%>
         <input type="submit" value="Add" name="addbtn" /></div>
         </form>
             <% }

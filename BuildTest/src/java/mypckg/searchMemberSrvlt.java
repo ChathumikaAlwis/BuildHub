@@ -80,7 +80,7 @@ public class searchMemberSrvlt extends HttpServlet {
         DbConnection con = new DbConnection();
         String srchq = request.getParameter("searchq");
         String memtype = request.getParameter("memtype");
-        String projid = request.getParameter("projid");
+        String projid = request.getParameter("projid");System.out.println(projid+"smmmmmmmmmmmmm");
         String sqlmembfind="";
         if(memtype.equals("contr")){
            sqlmembfind  = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";}
