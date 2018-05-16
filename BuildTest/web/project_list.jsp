@@ -130,7 +130,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/project_BU.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>
                 <%  }
@@ -174,7 +174,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/project_BU.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>
                     <%  }
@@ -218,7 +218,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/project_BU.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>
                         <%  }
@@ -262,7 +262,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/project_BU.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>
                             <%  }
@@ -306,7 +306,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/project_BU.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>
                                 <%  }
