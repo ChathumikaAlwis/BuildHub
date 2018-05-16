@@ -185,7 +185,7 @@ String posttaskname="n/a";
            <h4 style="font-family: 'Contrail One', cursive;">OP :<%= postuname %></h4>
            <img style="" src="images/post/<%= postId %>.jpg">
            <br/>
-           <h4 style="font-family: 'Contrail One', cursive; color:#000">Posted Time :<%= postdt %></h4>
+           <h5 style="font-family: 'Contrail One', cursive; color:#000">Posted Time :<%= postdt %></h5>
             <a href="<%=request.getContextPath()%>/seePost.jsp?postid=<%= postId%>" class="btn btn-primary text-center" role="button">See full post</a>
             </div>
         </div>
@@ -290,7 +290,7 @@ try{
           <%if(contname.equalsIgnoreCase("n/a")){%>
           <div class="row">
               <div class="col-sm-8">
-               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control">   
+               <input name="searchq" type="text" placeholder="Enter Email Address.." class="form-control" required>   
               </div>
               <div class="col-sm-4">        
           <input type="submit" value="Search" class="btn btn-primary" name="srchbtn" />
