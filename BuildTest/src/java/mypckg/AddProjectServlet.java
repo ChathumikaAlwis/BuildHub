@@ -90,7 +90,7 @@ public class AddProjectServlet extends HttpServlet {
         String uid = s.getAttribute("userID").toString();
         AddProject ap = new AddProject(request.getParameter("pname"),(String)request.getParameter("StartDate"),(String)request.getParameter("EndDate"), (String)request.getParameter("location"), (String)request.getParameter("description"));
         System.out.println("UID: "+ uid);       
-        String sql = "INSERT INTO project(Name,Owner,Start_Date,End_Date,Location_Address,Description) VALUES('"+ap.getName()+"',"+uid+",'"+ap.getStartDate()+"','"+ap.getEndDate()+"','"+ap.getLocationAddress()+"','"+ap.getDescription()+"')";
+        String sql = "INSERT INTO project(Name,Owner,Est_Start,Est_End,Location_Address,Description) VALUES('"+ap.getName()+"',"+uid+",'"+ap.getStartDate()+"','"+ap.getEndDate()+"','"+ap.getLocationAddress()+"','"+ap.getDescription()+"')";
         int pid = -1;
         try 
         {

@@ -49,7 +49,7 @@
 								<input name="pname" type="text" placeholder="Enter Project Name Here.." class="form-control" required>
 							</div>
 							<div class="col-sm-12 form-group">
-								<label>Start Date</label>
+								<label>Estimated Start Date</label>
 								<div class='input-group date' id='datetimepicker1'>
                                                                     <input type='text' class="form-control" name="StartDate" required />
                                                                     <span class="input-group-addon">
@@ -59,7 +59,7 @@
 							</div>
                                             
                                                         <div class="col-sm-12 form-group">
-								<label>End Date</label>
+								<label>Estimated End Date</label>
 								<div class='input-group date' id='datetimepicker2'>
                                                                  <input type='text' class="form-control" name="EndDate" required/>
                                                                     <span class="input-group-addon">
