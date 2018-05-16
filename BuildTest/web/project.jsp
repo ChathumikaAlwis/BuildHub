@@ -462,7 +462,7 @@ try{
     
     
     <div id="task" class="tab-pane fade">
-        <a href="<%=request.getContextPath()%>/createtask.jsp?pid=<%= projid %>">Add New Task+</a>
+        <a href="<%=request.getContextPath()%>/createtask.jsp?pid=<%= projid %>" class="btn btn-primary">Add New Task</a>
         <table class="table table-hover">
     <thead>
       <tr>
