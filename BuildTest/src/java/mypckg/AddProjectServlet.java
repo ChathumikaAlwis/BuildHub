@@ -7,6 +7,9 @@ package mypckg;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,26 +81,37 @@ public class AddProjectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        DbConnection con = new DbConnection();
+        DbConnection con = new DbConnection(); 
+        
+ 
         HttpSession s = request.getSession(true);
         
         String uid = s.getAttribute("userID").toString();
-        String pid = request.getParameter("pid");
-        System.out.println(pid+"  lll Project ID");
         AddProject ap = new AddProject(request.getParameter("pname"),(String)request.getParameter("StartDate"),(String)request.getParameter("EndDate"), (String)request.getParameter("location"), (String)request.getParameter("description"));
         System.out.println("UID: "+ uid);       
         String sql = "INSERT INTO project(Name,Owner,Start_Date,End_Date,Location_Address,Description) VALUES('"+ap.getName()+"',"+uid+",'"+ap.getStartDate()+"','"+ap.getEndDate()+"','"+ap.getLocationAddress()+"','"+ap.getDescription()+"')";
-        String sqliw = "INSERT INTO project_workers(project_id,cus_id) VALUES("+pid+","+uid+");";
-        try {
-            con.execInsert(sql);
-            con.execInsert(sqliw);
+        int pid = -1;
+        try 
+        {
+            Connection conn = con.connect();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ResultSet rs2 = ps.getGeneratedKeys();
+            rs2.next();
+            pid = rs2.getInt(1);
             System.out.println("Project Created!");
+            String sqliw = "INSERT INTO project_workers(project_id,cus_id) VALUES("+pid+","+uid+");";
+            con.execInsert(sqliw);          
             response.sendRedirect("project_list.jsp");   
-        } catch (SQLException | ClassNotFoundException ex) 
+        } 
+        catch (SQLException | ClassNotFoundException ex) 
         {
             System.out.println("FAILED!");
             Logger.getLogger(AddProjectServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }  
+        
+        
+
     }
 
     /**
