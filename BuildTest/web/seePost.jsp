@@ -13,19 +13,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
 
         <title>JSP Page</title>
+        
+        <style>
+            #contain {
+    max-width: 700px; }
+            </style>
     </head>
     <body>
-        <jsp:include page="header.html"/>
+        <jsp:include page="header.jsp"/>
         
        <% String status = "-100";
                status =request.getParameter("status");
         if(status!=null){%>
-            <p><%=status%></p> 
+            <h1><%=status%></h1> 
  <%}%>
-           <div id="post" class="tab-pane fade" style="background-color: #d2d1d1">
+           
 <%      
 // select taskID from tasks where 
 // Select post from post where taskID = 
@@ -69,29 +77,42 @@ String posttaskname="n/a";
         }catch(Exception e){System.out.println(e.getMessage()+"img");}
         %>
           
-        <div id="postvw" style="border:solid black 3px">
-        <h3>Posted By :<%= postuname %></h3><h4>Post Name :<%= postName %></h4><h6>Post Date :<%= postdt %></h6>            
-        <h5>Under Task :<%=posttaskname%></h5><h5>Description :<%=postDesc%></h5>
-        <img  src="images/post/<%= postID %>.jpg" width="250px" height="250px">
+        <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
+	<div class="col-lg-12 well">  
+        
+        <div class="thumbnail">
+            
+             <h6 class="text-right" style="font-family: 'Contrail One', cursive;">Post Date :<%= postdt %></h6>   
+             <h4 style="font-family: 'Contrail One', cursive;" class="text-right">Posted By :<%= postuname %></h4>
+             <h4 style="font-family: 'Contrail One', cursive;" class="text-right">Under Task :<%=posttaskname%></h4>
+        
+             <h2 class="text-center" style="font-family: 'Contrail One', cursive;">Post Name :<%= postName %></h2>
+ 
+             <h4 style="font-family: 'Contrail One', cursive;" class="text-center">Description :<%=postDesc%></h4>    
+             <img  src="images/post/<%= postID %>.jpg" class="text-center" width="60%">
+             <br/>
         </div>
-        
-        
-        <div id="psotcmnt" style="border:solid black 3px">
-        <!--String status=(String)request.getAttribute("status");
+          
+             <div id="psotcmnt">
+                  <!--String status=(String)request.getAttribute("status");
           if(Integer.parseInt(status)==-1){ status="unsuccessful!"; }  
         if(status!=null){ %>
         <p><= status%></p> <}% -->
-            <form action="cmntServlet" method="post" >
-            <textarea style="width:19%;resize: none" name="cmntcontent" rows="4" cols="20">
-            </textarea>
-            <input type="hidden" name="postId" value="<%=postID%>">
-            <%System.out.println(postID+"asdsdadasd");  %>
-            <input type="hidden" name="userId" value="<%=oid%>"><%System.out.println("oiddddddddddd   "+oid);%>
-                <input type="submit" value="Post" name="post" class="btn-success"  />
-        </form>
-        </div>
-        
-        <div id="viewcmnt" style="border:solid black 3px">
+                  <form action="cmntServlet" method="post" >
+                  <div class="form-group">
+                      <textarea class="form-control" rows="2" name="cmntcontent" id="comment" required></textarea>
+                    </div>    
+                   <input type="hidden" name="postId" value="<%=postID%>"> 
+                   <%System.out.println(postID+"asdsdadasd");  %>
+                   <input type="hidden" name="userId" value="<%=oid%>"><%System.out.println("oiddddddddddd   "+oid);%>
+                   <input type="submit" value="Post" name="post" class="btn btn-primary"  />
+                  </form>    
+             </div>
+                   <br/>
+                   
+                   
+        <div id="viewcmnt">
+           
                 <%
         String sqlcmntview = "SELECT content,user_id,date_time FROM comments WHERE post_id="+postID+";";
         ResultSet rscmntview = con.executeSelect(sqlcmntview);
@@ -108,14 +129,26 @@ String posttaskname="n/a";
         rstcmnter.next(); String cmntername = rstcmnter.getString(2);
 
                 %>
-                <div style="border: solid black 1px">
-        <p><%=cmntername%></p>
-        <p style="font-size:5"><%=cmntdt%></p>               
-        <p><%=commcontent%></p></div>
+                <div style="background-color: #FDFDFD;border-left: 6px solid #1B85D8; padding: 20px; margin-bottom: 15px; box-shadow: 5px 5px 5px #E1E1E1;">
+                    
+                    <div>
+                            <h6 style="font-family: 'Contrail One', cursive;" class="text-left">User <%=cmntername%> says:</h6>
+                            <h6 style="font-family: 'Contrail One', cursive;" class="text-left">Posted on: <%=cmntdt%></h6>
+                        </div>
+                        <div>
+                        <h4 style="font-family: 'Contrail One', cursive;" class="text-center"><%=commcontent%></h4>
+                    </div>
+                </div>
+                    
                 <%}%>
                 
-         </div>
-<%
-        }catch(Exception e){System.out.println(e.getMessage());}%>
+         </div>     
+             
+        </div>
+        </div>        
+
+        <%} catch(Exception e){System.out.println(e.getMessage());}%>
+        
+        <jsp:include page="footer.html"/>
     </body>
 </html>
