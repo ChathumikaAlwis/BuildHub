@@ -15,9 +15,9 @@
         <title>Project</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     </head>
     <body>
         <jsp:include page="header.html"/>
@@ -78,22 +78,25 @@
         <div class="container-fluid" style="margin-top: 90px">
         <h1 style="font-family: 'Rubik Mono One', sans-serif;" class="text-center">Project Name: <%=pname%></h1>
         <br/>
-            <ul class="nav nav-pills nav-justified col-sm-12">
-    <li class="active"><a data-toggle="pill" href="#overview">OVERVIEW</a></li>
-    <li><a data-toggle="pill" href="#post">POSTS</a></li>
-    <li><a data-toggle="pill" href="#thread">THREADS</a></li>
+    <ul class="nav nav-pills nav-justified col-sm-12">
+    <li id="overviewtab"class="active"><a data-toggle="pill" href="#overview">OVERVIEW</a></li>
+    <li id="taskstab"><a data-toggle="pill" href="#post">POSTS</a></li>
+    <li id="threadstab"><a data-toggle="pill" href="#thread">THREADS</a></li>
     <li id="memberstab"><a data-toggle="pill" href="#member">MEMBERS</a></li>
     <li id="taskstab"><a data-toggle="pill" href="#task">TASKS</a></li>
-  </ul>
-    <script>      
-        
+    </ul>
+    <script>             
         var x =<%=settab%>; 
         if(x === 0)
         {
-            $("memberstab").hide();
-            $("taskstab").hide();
+            $("#threadstab").hide();
+            $("#thread").hide();
+            console.log("Elementhide Successful!");
         }
-        
+        else
+            console.log("Elementhide Failed!");
+            
+        console.log(x);
         
     </script>
             <br/><br/><br/>
@@ -222,7 +225,7 @@ String posttaskname="n/a";
     </div>
     
     
-    <div id="member" class="tab-pane fade">
+    <div id="member" name="memberstab" class="tab-pane fade">
                <%    
         String cusid=null,contractid=null,archid=null,intdesid=null,qsurvid=null,carpid=null;
         String cusname="n/a",contname="n/a",archiname="n/a",intdesname="n/a",qsurvname="n/a",carpname="n/a";           

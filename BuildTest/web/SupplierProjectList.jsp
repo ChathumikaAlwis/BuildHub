@@ -15,7 +15,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Contrail+One" rel="stylesheet">
-        <title>JSP Page</title>
+        <title>SupplierHome</title>
         <style>
             #contain {
     max-width: 750px; }
@@ -27,7 +27,7 @@
         
         <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
 	<div class="col-lg-12 well">
-        <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Supplier List/Thread</h2>
+        <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Project List/Thread</h2>
         <br/><br/>
             <ul class="nav nav-pills nav-justified">
     <li class="active"><a data-toggle="pill" href="#projectlist">Project List</a></li>
@@ -88,7 +88,7 @@
                 <%}%>
                 </div>
                 <div class="col-sm-2 text-center">      
-                    <a href="<%=request.getContextPath()%>/project.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
+                    <a href="<%=request.getContextPath()%>/projectOverview.jsp?pid=<%= pId%>" style="margin-top:14px" class="btn btn-primary" role="button">View Project</a>
                 </div>
             </div>    
         <%  }%>
