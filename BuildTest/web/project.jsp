@@ -426,8 +426,6 @@ try{
       <tr>
         <th>Task Name</th>
         <th>Task Status</th>
-        <th>Task Start Date</th>
-        <th>Task End Date</th>
         <th>Estimated Start Date</th>
         <th>Estimated End Date</th>
         <th>Task Description</th>
@@ -463,8 +461,6 @@ rstmod.next(); String modlnm = rstmod.getString(2);
    <tr>
         <td><%= tname %></td>
         <td><%= tstatus %></td>
-        <td><%= tsd %></td>
-        <td><%= ted %></td>
         <td><%= tesd %></td>
         <td><%= teed %></td>
         <td><%= tdesc %></td>

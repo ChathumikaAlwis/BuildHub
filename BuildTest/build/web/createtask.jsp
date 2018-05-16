@@ -124,7 +124,7 @@
         }catch(Exception e){}
                %>    
            Select Moderator : <select name="modId">
-                <option value="<%=contname%>"><%=contname%></option>
+                <option value="<%=contrid%>"><%=contname%></option>
                   <option value="<%=archid%>"><%=archiname%></option>
                   <option value="<%=intdes%>"><%=intdesname%></option>
                   <option value="<%=qsurv%>"><%=qsurvname%></option>

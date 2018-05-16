@@ -63,33 +63,6 @@ public class AddTaskServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                    String tname = (String)request.getParameter("cmntcontent");
-            String esd = (String)request.getParameter("EstStartDate");
-            String eed = (String)request.getParameter("EstEndDate");
-            String desc =(String)request.getParameter("description"); 
-               String modid = (String)request.getParameter("modId");
-            
-            try{
-                DbConnection con = new DbConnection();    
-    String sql = "INSERT INTO comments(post_id,content,user_id,date_time) VALUES("+postId+",'"+cmnt+"',"+userId+",'"+postdt+"');";
-    String r = con.execInsert(sql);
-        System.out.println(r+"blaaaaa");
-    if(Integer.parseInt(r)>0){
-                request.setAttribute("status", 1);
-                System.out.println();
-            RequestDispatcher rd = request.getRequestDispatcher("/seePost.jsp?postid="+ postId);
-             rd.forward(request, response);
-
-    }
-    else{
-                request.setAttribute("status", -1);
-            RequestDispatcher rd = request.getRequestDispatcher("/seePost.jsp?postid="+ postId);
-             rd.forward(request, response);
-    }
-        
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(cmntServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(Exception e){System.out.println(e.getMessage());}
 
 
         
@@ -108,7 +81,35 @@ public class AddTaskServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                           String tname = (String)request.getParameter("tname");
+            String esd = (String)request.getParameter("EstStartDate");System.out.println(esd);
+            String eed = (String)request.getParameter("EstEndDate");System.out.println(esd);
+            String desc =(String)request.getParameter("description"); System.out.println(esd);
+               String modid = (String)request.getParameter("modId");System.out.println(esd);
+             String pid = (String)request.getParameter("pid");System.out.println(esd);
+             
+            try{
+                DbConnection con = new DbConnection();    
+    String sql = "INSERT INTO task(project_id,name,est_start,est_end,description,moderator_id) VALUES("+pid+",'"+tname+"','"+esd+"','"+eed+"','"+desc+"',"+modid+");";
+    String r = con.execInsert(sql);
+        System.out.println(r+"blaaaaa");
+    if(Integer.parseInt(r)>0){
+                request.setAttribute("status", 1);
+                System.out.println();
+            RequestDispatcher rd = request.getRequestDispatcher("/project.jsp?pid="+ pid);
+             rd.forward(request, response);
+
+    }
+    else{
+                request.setAttribute("status", -1);
+            RequestDispatcher rd = request.getRequestDispatcher("/project.jsp?pid="+ pid);
+             rd.forward(request, response);
+    }
+        
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(cmntServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){System.out.println(e.getMessage());}
+
     }
 
     /**
