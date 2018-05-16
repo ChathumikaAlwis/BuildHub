@@ -18,6 +18,7 @@
         <%  String srchid="";
         DbConnection con = new DbConnection();
         String memtype= (String) request.getAttribute("memtype");
+        String projid= (String) request.getAttribute("projid");
         ResultSet srchres = (ResultSet) request.getAttribute("serachres") ;
         while(srchres.next()){
             String res = srchres.getString(1);
@@ -29,13 +30,15 @@
         String userid = rsusname.getString(3);
        
         %>
-        <form action="" post="addMemSrvlt">
+        <form action="addmem" method="POST">
         <div style="border: solid black 1px">
          <p><%=memtype%></p>
          <p><%=userfname%></p>
         <p><%=userlname%></p>
         <p><%=userid%></p>
         <input type="hidden" name="memtype" value="<%= memtype %>">
+        <input type="hidden" name="userId" value="<%= userid %>">
+        <input type="hidden" name="projid" value="<%= projid %>">
         <input type="submit" value="Add" name="addbtn" /></div>
         </form>
             <% }

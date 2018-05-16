@@ -7,8 +7,8 @@ package mypckg;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Chath
  */
-@WebServlet(name = "searchMemberSrvlt", urlPatterns = {"/searchMemberSrvlt"})
-public class searchMemberSrvlt extends HttpServlet {
+@WebServlet(name = "addmem", urlPatterns = {"/addmem"})
+public class addmem extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class searchMemberSrvlt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet searchMemberSrvlt</title>");            
+            out.println("<title>Servlet addmem</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet searchMemberSrvlt at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addmem at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,27 +77,39 @@ public class searchMemberSrvlt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DbConnection con = new DbConnection();
-        String srchq = request.getParameter("searchq");
-        String memtype = request.getParameter("memtype");
-        String projid = request.getParameter("projid");
         
-        if(memtype.equals("contr")){
-            try {
-                String sqlcontr = "SELECT id from business_user where email LIKE '%"+srchq+"%' AND role='Contractor'";
-                ResultSet rscontrsrch = con.executeSelect(sqlcontr);
-            request.setAttribute("memtype", memtype );
-                request.setAttribute("serachres", rscontrsrch );
-                request.setAttribute("projid", projid );
-            RequestDispatcher rd = request.getRequestDispatcher("searchmres.jsp");
+        
+                   String memtype = (String)request.getParameter("memtype");
+            String userId = (String)request.getParameter("userId");
+            String projid = (String)request.getParameter("projid");
+            
+
+    String sqlins="";        
+            try{
+                DbConnection con = new DbConnection();
+                System.out.println("memtype-----------"+memtype); 
+                if(memtype.equals("contr")){
+     sqlins = "UPDATE project_workers SET Contractor_Id="+userId+" WHERE Project_id="+projid+";";}
+    String r = con.execInsert(sqlins);
+        System.out.println(r+"rrrrrrrrrrrrr");
+    if(Integer.parseInt(r)>0){
+                request.setAttribute("status", 1);
+                System.out.println();
+            RequestDispatcher rd = request.getRequestDispatcher("/project.jsp?pid="+ projid);
              rd.forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(searchMemberSrvlt.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+
+    }
+    else{
+                request.setAttribute("status", -1);
+            RequestDispatcher rd = request.getRequestDispatcher("/project_list.jsp");
+             rd.forward(request, response);
+    }
         
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(cmntServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){System.out.println(e.getMessage());}
+
+
     }
 
     /**
