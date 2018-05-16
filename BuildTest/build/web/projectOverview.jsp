@@ -17,8 +17,14 @@
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
         <title>ProjectOverview</title>
+        
+        <style>
+            #contain {
+    max-width: 700px; }
+            </style>
     </head>
-    <body style="background-color: #0077e2">
+    <body>
+        <jsp:include page="header.jsp"/> 
 
         <%  
         String projid = (String)request.getParameter("pid");    
@@ -38,7 +44,7 @@
 
         %>
         
-        <div id="overview" class="tab-pane fade in active">
+        
               
        <!--Project Name : <h6><%=pname%></h6>
        Project Status : <h6><%=status%></h6>
@@ -49,9 +55,30 @@
        Location :<h6><%=loc%></h6>
        Description : <h6><%=desc%></h6> -->
         
+        
+        <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
+            <div class="col-lg-12 well">
+            
+                <div class="text-center">
+                <h2 style="font-family: 'Rubik Mono One', sans-serif;" >Project Name: <%=pname%></h2>
+            </div>  
+            
         <div class="row">
             <div class="col-sm-6">
-                <h3 style="font-family: 'Rubik Mono One', sans-serif;" >Project Name: <%=pname%></h3>
+               <h3 style="font-family: 'Boogaloo', cursive;" class="text-center">Estimated Start Date: <%=esd%></h3>  
+            </div>
+            <div class="col-sm-6">
+               <h3 style="font-family: 'Boogaloo', cursive;" class="text-center" >Estimated End Date: <%=eed%></h3>     
+            </div>
+       </div>  
+                     
+           <div class="text-center">
+               <h4 style="font-family: 'Boogaloo', cursive;" >Description : <%=desc%></h4>
+           </div> 
+           
+           <div class="row">
+            <div class="col-sm-6 text-left">
+                 <h3 style="font-family: 'Boogaloo', cursive;" >Location: <%=loc%></h3>
             </div>
             <div class="col-sm-6">
                 <%if(status.equals("ongoing"))
@@ -74,31 +101,10 @@
             </div>
        </div>  
                 
-                
-       <div class="row">
-           <div class="col-sm-3">
-               <h3 style="font-family: 'Boogaloo', cursive;" >Start Date: <%=sd%></h3>
-           </div>
-           <div class="col-sm-3">
-               <h3 style="font-family: 'Boogaloo', cursive;" >End Date: <%=ed%></h3>
-           </div>
-           <div class="col-sm-3">
-               <h3 style="font-family: 'Boogaloo', cursive;" >Estimated Start Date: <%=esd%></h3>
-           </div>
-           <div class="col-sm-3">
-               <h3 style="font-family: 'Boogaloo', cursive;" >Estimated End Date: <%=eed%></h3>
-           </div>
-       </div>
-       
-      
-           <div class="col-sm-12">
-               <h2 style="font-family: 'Boogaloo', cursive;" >Description : <%=desc%></h2>
-           </div>
-           <div class="col-sm-12">
-               <h2 style="font-family: 'Boogaloo', cursive;" >Location: <%=loc%></h2>
-           </div>
+            </div>
+        </div>
                      
-    </div>
-     
+   
+     <jsp:include page="footer.html"/> 
     </body>
 </html>
