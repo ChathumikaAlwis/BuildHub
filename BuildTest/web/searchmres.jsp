@@ -78,7 +78,7 @@
             </form>
             
         </div>
-         </div>
+         </div><hr>
             <% }
         %>
         <jsp:include page="footer.html"/> 

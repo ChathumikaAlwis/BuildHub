@@ -45,7 +45,7 @@ public class searchMemberSrvlt extends HttpServlet {
             out.println("<title>Servlet searchMemberSrvlt</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet searchMemberSrvlt at " + request.getContextPath() + "</h1>");
+            out.println("<a href=project_list.jsp>Go Back </a>");
             out.println("</body>");
             out.println("</html>");
         }
