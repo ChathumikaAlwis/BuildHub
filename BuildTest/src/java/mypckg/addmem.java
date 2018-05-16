@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -80,13 +79,9 @@ public class addmem extends HttpServlet {
             throws ServletException, IOException {
         
         
-            HttpSession s = request.getSession(true);
-            String memtype = (String)request.getParameter("memtype");
+                   String memtype = (String)request.getParameter("memtype");
             String userId = (String)request.getParameter("userId");
             String projid = request.getParameter("projid");System.out.println(projid);
-            String userGroup = (String)s.getAttribute("usergroup");
-            
-            
             
 
     String sqlins="";        

@@ -15,35 +15,27 @@
     </head>
     <body>
         
-        <% 
+        <%  String srchid="";
         DbConnection con = new DbConnection();
         String memtype= (String) request.getAttribute("memtype");
         String projid= (String) request.getAttribute("projid");System.out.println(projid);
-        ResultSet srchres = (ResultSet)request.getAttribute("serachres") ;
-        while(srchres.next())
-        {
+        ResultSet srchres = (ResultSet) request.getAttribute("serachres") ;
+        while(srchres.next()){
             String res = srchres.getString(1);
-            String sqlusname = "SELECT fname,lname,id,Contact_No,Address,Last_Login,Role,Description FROM business_user WHERE id="+res+";";
-            ResultSet rsusname = con.executeSelect(sqlusname);
-            rsusname.next(); 
-            String userfname = rsusname.getString(1);
-            String userlname = rsusname.getString(2);
-            String userid = rsusname.getString(3);
-            String usercontact = rsusname.getString(4);
-            String useraddress = rsusname.getString(5);
-            String userlastlogin = rsusname.getString(6);
-            String userrole = rsusname.getString(7);
-            String userdescription = rsusname.getString(8);      
+                    String sqlusname = "SELECT fname,lname,id FROM business_user WHERE id="+res+";";
+        ResultSet rsusname = con.executeSelect(sqlusname);
+        rsusname.next(); 
+        String userfname = rsusname.getString(1);
+        String userlname = rsusname.getString(2);
+        String userid = rsusname.getString(3);
+       
         %>
         <form action="addmem" method="POST">
         <div style="border: solid black 1px">
-        <p>Name: <%=userfname%> <%=userlname%></p>
-        <p>Contact: <%=usercontact%></p>
-        <p>Address: <%=useraddress%></p>
-        <p>Description: <%=userdescription%></p>
-        <p>Occupation: <%=userrole%></p>
-        <p>Last Login: <%=userlastlogin%></p>
-        
+         <p><%=memtype%></p>
+         <p><%=userfname%></p>
+        <p><%=userlname%></p>
+        <p><%=userid%></p>
         <input type="hidden" name="memtype" value="<%= memtype %>">
         <input type="hidden" name="userId" value="<%= userid %>">
         <input type="hidden" name="projid" value="<%= projid %>"><%System.out.println(projid);%>
