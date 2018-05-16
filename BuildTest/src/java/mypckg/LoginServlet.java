@@ -149,7 +149,7 @@ public class LoginServlet extends HttpServlet {
                         else
                             if(project == 0)
                             {
-                                response.sendRedirect("homepage.html");                          
+                                response.sendRedirect("homepage.jsp");                          
                             } 
                     }
                     else
@@ -157,8 +157,7 @@ public class LoginServlet extends HttpServlet {
                         {                           
                             s.setAttribute("userID", u.getProjectSupplyID());                           
                             response.sendRedirect("SupplierProjectList.jsp");                              
-                        }                
-                                                                                                                                              
+                        }                                                                                                                                                              
             }
             else
             {
