@@ -32,7 +32,7 @@
 %>
                    
             <form name="addTask" action="AddTaskServlet" method="POST">
-            
+                <input type="hidden" name="pid" value="<%=pid%>">
 					<div class="col-sm-12">
 						
 							<div class="col-sm-12 form-group">
