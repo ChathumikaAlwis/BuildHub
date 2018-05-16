@@ -28,13 +28,9 @@
         <div class="container" id="contain" style="margin-top:100px;margin-bottom: 40px; color: #1B85D8">
 	<div class="col-lg-12 well">
         <h2 style="font-family: 'Contrail One', cursive;" class="text-center">Threads</h2>
-        <br/><br/>
-            <ul class="nav nav-pills nav-justified">
-    <li class="active"><a data-toggle="pill" href="#threads">Threads</a></li>
-  </ul>
-     <br/>       
+        <br/>     
             <div class="tab-content">
-                             
+            <hr>                     
         <div id="threads" class="tab-pane fade in active">    
     
         <%
@@ -67,7 +63,7 @@
                 <div class="col-sm-2 text-center">      
                     <a href="<%=request.getContextPath()%>/supplierThreads.jsp?tid=<%= tthreadID%>" style="margin-top:14px" class="btn btn-primary" role="button">View Threads</a>
                 </div>
-            </div> 
+            </div> <hr> 
         <%  }
         } 
         catch(Exception e)
